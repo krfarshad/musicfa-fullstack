@@ -1,18 +1,49 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const app = express();
-const port = process.env.PORT || 5000;
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+const mongoose = require("mongoose");
 
-app.get("/", (req, res) => {
-  res.json({ message: "ok" });
+const musicSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  artist: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Artist",
+    required: true,
+  },
+  album: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Album",
+  },
+  genre: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Genre",
+  },
+  duration: {
+    type: Number, // Duration in seconds
+    required: true,
+  },
+  releaseDate: {
+    type: Date,
+  },
+  url: {
+    type: String,
+    required: true,
+  },
+  coverImageUrl: {
+    type: String,
+  },
+  playCount: {
+    type: Number,
+    default: 0,
+  },
+  likeCount: {
+    type: Number,
+    default: 0,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+module.exports = mongoose.model("Music", musicSchema);
