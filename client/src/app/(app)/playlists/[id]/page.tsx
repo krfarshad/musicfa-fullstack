@@ -1,5 +1,7 @@
+import { Playlist } from "@/features/playlist";
+
 const page = () => {
-  return <>page</>;
+  return <Playlist />;
 };
 
 export default page;

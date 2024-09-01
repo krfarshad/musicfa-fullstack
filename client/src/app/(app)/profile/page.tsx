@@ -1,5 +1,7 @@
+import { Account } from "@/features/user";
+
 const page = () => {
-  return <>page</>;
+  return <Account />;
 };
 
 export default page;

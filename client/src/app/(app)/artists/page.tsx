@@ -1,5 +1,7 @@
+import { Artists } from "@/features/artist";
+
 const page = () => {
-  return <>page</>;
+  return <Artists />;
 };
 
 export default page;

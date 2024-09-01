@@ -1,5 +1,7 @@
+import { Notifications } from "@/features/notification";
+
 const page = () => {
-  return <>page</>;
+  return <Notifications />;
 };
 
 export default page;

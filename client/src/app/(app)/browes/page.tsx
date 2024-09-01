@@ -1,5 +1,7 @@
+import { Browse } from "@/features/music";
+
 const page = () => {
-  return <>page</>;
+  return <Browse />;
 };
 
 export default page;
