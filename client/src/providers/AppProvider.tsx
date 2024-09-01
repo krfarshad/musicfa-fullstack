@@ -5,7 +5,6 @@ import NextTopLoader from "nextjs-toploader";
 import { memo } from "react";
 import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "@/assets/styles/toastCustom.css";
 import ReactQueryContext from "./ReactQueryContext";
 import { SessionProvider } from "next-auth/react";
 

@@ -1,5 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
+export * from "./api";
 export interface ChildrenProps {
   children: ReactNode;
 }
