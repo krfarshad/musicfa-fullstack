@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
-const config = require("./config");
+const config = require("./global.config");
 const routes = require("./routes");
 app.use("/api", routes);
-const PORT = config.port || 3000;
+const PORT = config.port || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
