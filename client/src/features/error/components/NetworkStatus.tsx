@@ -1,9 +1,9 @@
 "use client";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { toast } from "react-toastify";
 import useNetworkStatus from "../hooks/useNetworkStatus";
 
-export const NetworkStatus = () => {
+const NetworkStatus = () => {
   const isOnline = useNetworkStatus();
   const toastId = "network-status";
 
@@ -25,3 +25,4 @@ export const NetworkStatus = () => {
 
   return null;
 };
+export default memo(NetworkStatus);
