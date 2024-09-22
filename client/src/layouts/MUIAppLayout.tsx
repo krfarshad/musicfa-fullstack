@@ -1,0 +1,85 @@
+"use client";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import CssBaseline from "@mui/material/CssBaseline";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { ChildrenProps } from "@/types";
+import { Sidebar } from "./Sidebar";
+import { IconButton } from "@mui/material";
+import { ArrowRight2 } from "iconsax-react";
+import { Header } from "./Header";
+
+interface Props extends ChildrenProps {}
+export default function MUIAppLayout(props: Props) {
+  const { children } = props;
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(!open);
+  };
+  const drawerWidth = open ? 240 : 0;
+
+  return (
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          transition: "all .3s",
+          ml: `${drawerWidth}px`,
+          backgroundColor: "background.dark",
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            color="primary"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={[
+              {
+                marginRight: 5,
+                transition: "all .3s",
+              },
+              open && { transform: "rotate(180deg)" },
+            ]}
+          >
+            <ArrowRight2 size="24" color="#fff" />
+          </IconButton>
+          <Header />
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            backgroundColor: "background.dark",
+            boxSizing: "border-box",
+            transition: "all .3s",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Sidebar />
+      </Drawer>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          minHeight: "100vh",
+          backgroundColor: "background.scrimDark",
+        }}
+      >
+        <Toolbar />
+        {children}
+      </Box>
+    </Box>
+  );
+}

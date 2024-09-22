@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/context";
 import { AppLayout } from "@/layouts";
+import MUIAppLayout from "@/layouts/MUIAppLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppProvider>
-          <AppLayout>{children}</AppLayout>
+          <MUIAppLayout>{children}</MUIAppLayout>
         </AppProvider>
       </body>
     </html>
