@@ -1,15 +1,11 @@
-import { ArrowLeft, NotificationBing } from "iconsax-react";
-import Image from "next/image";
-import avatar from "@/assets/images/avatar2.jpg";
+import { NotificationBing } from "iconsax-react";
+import { Badge, IconButton } from "@mui/material";
+import HeaderAvatar from "./HeaderAvatar";
 
 export const Header = () => {
   return (
     <div className="flex w-full items-center  justify-between border-b border-slate-700 p-2">
-      {/* back and search*/}
       <div className="inline-flex items-center gap-2">
-        <button className="rounded-md bg-[#373737] p-2 transition-all hover:transition-all">
-          <ArrowLeft size="24" color="#eee" variant="Broken" />
-        </button>
         <input
           type="search"
           name="s"
@@ -20,23 +16,12 @@ export const Header = () => {
       </div>
       {/* profile and notifications */}
       <div className="inline-flex items-center gap-2">
-        <div>
-          <button className="rounded-md bg-[#373737] p-2 transition-all hover:transition-all">
+        <IconButton size="small" color="inherit">
+          <Badge badgeContent={17} color="error">
             <NotificationBing size="24" color="#eee" variant="Broken" />
-          </button>
-        </div>
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-md bg-[#373737] p-1.5 transition-all hover:transition-all">
-            <Image
-              src={avatar.src}
-              alt="user"
-              width="30"
-              height={30}
-              className="rounded-full object-cover object-center"
-            />
-            <span className="max-w-28 text-xs">Farshad Karimi</span>
-          </div>
-        </div>
+          </Badge>
+        </IconButton>
+        <HeaderAvatar />
       </div>
     </div>
   );
