@@ -1,19 +1,30 @@
+import { Box, Button } from "@mui/material";
 import { Login, Logout } from "iconsax-react";
 export const LoginSidebar = () => {
   const loggedIn = true;
   return (
-    <div className="px-4 py-2">
+    <Box p={[2, 4]}>
       {loggedIn ? (
-        <button className="inline-flex w-full items-center justify-center gap-1 rounded-md bg-[#202020] p-2 text-xs font-normal capitalize transition-all hover:bg-red-800 hover:transition-all">
-          <Logout size="20" color="#fff" />
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          fullWidth
+          startIcon={<Logout size="20" color="#fff" />}
+        >
           Logout
-        </button>
+        </Button>
       ) : (
-        <button className="inline-flex w-full items-center justify-center gap-1 rounded-md bg-[#202020]  p-2 text-xs font-normal capitalize transition-all hover:bg-red-800 hover:transition-all">
-          <Login size="20" color="#fff" />
+        <Button
+          variant="contained"
+          color="secondary"
+          size="small"
+          fullWidth
+          startIcon={<Login size="20" color="#fff" />}
+        >
           Login
-        </button>
+        </Button>
       )}
-    </div>
+    </Box>
   );
 };
