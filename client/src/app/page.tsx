@@ -1,9 +1,17 @@
+import { SingerCard, SongCard } from "@/components";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-between p-24">
+      <div>
+        <SingerCard />
+      </div>
+
+      <div>
+        <SongCard />
+      </div>
       <Button variant="contained" color="info">
         test
       </Button>
