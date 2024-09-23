@@ -2,12 +2,12 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import { menuItems } from "./menuItems";
 import { Logo } from "../Logo";
 import { LoginSidebar } from "./LoginSidebar";
 import List from "@mui/material/List";
 import { Box, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 
 export const Sidebar = () => {
   return (
@@ -26,22 +26,42 @@ export const Sidebar = () => {
       <Box sx={{ flex: "1 1 0%" }}>
         {menuItems.map((menu) => (
           <>
-            <Typography variant="body1" component="h5" px={2} pt={4}>
+            <Typography
+              variant="body1"
+              component="h5"
+              sx={{ fontWeight: "semibold" }}
+              px={2}
+              pt={4}
+            >
               {menu.title}
             </Typography>
-            <List key={menu.title}>
+            <List key={`menu_head_${menu.title}}`}>
               {menu.items.map((item) => (
-                <ListItem disablePadding key={`${menu.title}_${item.title}`}>
-                  <ListItemButton href={item.link}>
-                    <ListItemIcon sx={{ width: "28px" }}>
-                      {item.icon}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={item.title}
-                      color="light"
-                      sx={{ fontSize: "14px" }}
-                    />
-                  </ListItemButton>
+                <ListItem
+                  disablePadding
+                  key={`child_${menu.title}_${item.title}`}
+                >
+                  <Link
+                    href={item.link}
+                    style={{
+                      color: "#fff",
+                      textDecoration: "none",
+                      width: "100%",
+                    }}
+                  >
+                    <ListItemButton>
+                      <ListItemIcon sx={{ width: "28px" }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <Typography
+                        variant="body1"
+                        sx={{ fontSize: "13px!important" }}
+                        color="light"
+                      >
+                        {item.title}
+                      </Typography>
+                    </ListItemButton>
+                  </Link>
                 </ListItem>
               ))}
             </List>
