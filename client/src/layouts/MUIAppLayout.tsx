@@ -63,7 +63,7 @@ export default function MUIAppLayout(props: Props) {
                   edge="start"
                   sx={[
                     {
-                      marginRight: 5,
+                      marginRight: 1,
                       color: "#fff",
                       transition: "all .3s",
                     },

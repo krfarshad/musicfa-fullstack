@@ -20,20 +20,14 @@ const HeaderAvatar = () => {
     null,
   );
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
   return (
     <Box sx={{ flexGrow: 0 }}>
       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -41,7 +35,7 @@ const HeaderAvatar = () => {
       </IconButton>
       <Menu
         sx={{ mt: "45px" }}
-        id="menu-appbar"
+        id="menu-avatar"
         anchorEl={anchorElUser}
         anchorOrigin={{
           vertical: "top",
