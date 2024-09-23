@@ -29,7 +29,7 @@ const HeaderAvatar = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 0 }}>
+    <Box>
       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
         <Avatar alt="username" src={avatar.src} />
       </IconButton>
@@ -51,7 +51,9 @@ const HeaderAvatar = () => {
       >
         {avatarMenu.map((item) => (
           <MenuItem key={item.label} onClick={handleCloseUserMenu}>
-            <Typography sx={{ textAlign: "center" }}>{item.label}</Typography>
+            <Typography sx={{ textAlign: "center", fontSize: "12px" }}>
+              {item.label}
+            </Typography>
           </MenuItem>
         ))}
       </Menu>

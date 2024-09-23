@@ -1,4 +1,7 @@
+"use client";
+
 import { SingerCard, SongCard } from "@/components";
+import PLayerBlade from "@/components/Player/PLayerBlade";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
@@ -8,9 +11,11 @@ export default function Home() {
       <div>
         <SingerCard />
       </div>
-
       <div>
         <SongCard />
+      </div>
+      <div>
+        <PLayerBlade />
       </div>
       <Button variant="contained" color="info">
         test
