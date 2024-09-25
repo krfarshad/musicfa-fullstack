@@ -1,21 +1,10 @@
-import { SingerCard } from "@/components";
+import { Section, SingerCard } from "@/components";
 import { Carousel } from "@/components/Carousel";
-
 import { CarouselItem } from "@/components/Carousel/CarouselItem";
-import { Typography, Box } from "@mui/material";
 
 const TopArtists = () => {
   return (
-    <Box
-      sx={{
-        mt: 8,
-        p: 4,
-        backgroundColor: "background.light",
-      }}
-    >
-      <Typography variant="h5" gutterBottom mb="1">
-        TopArtists
-      </Typography>
+    <Section title="Top artists">
       <Carousel gap="gap-6">
         <CarouselItem>
           <SingerCard />
@@ -30,7 +19,7 @@ const TopArtists = () => {
           <SingerCard />
         </CarouselItem>
       </Carousel>
-    </Box>
+    </Section>
   );
 };
 

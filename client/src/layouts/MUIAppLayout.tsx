@@ -9,6 +9,7 @@ import { IconButton } from "@mui/material";
 import { Header } from "./Header";
 import MenuOpenOutlinedIcon from "@mui/icons-material/MenuOpenOutlined";
 import { useEffect, useState, useRef } from "react";
+import PLayerBlade from "@/components/Player/PLayerBlade";
 
 interface Props extends ChildrenProps {}
 
@@ -94,12 +95,14 @@ export default function MUIAppLayout(props: Props) {
               sx={{
                 flexGrow: 1,
                 p: 3,
+                pb: 20,
                 minHeight: "100vh",
                 backgroundColor: "background.scrimDark",
               }}
             >
               <Toolbar />
               {children}
+              <PLayerBlade />
             </Box>
           </>
         )}
