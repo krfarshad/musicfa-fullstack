@@ -12,17 +12,17 @@ export const Section = (props: Props) => {
       sx={{
         mt: 8,
         py: 4,
-        backgroundColor: "background.light",
+        px: 2,
       }}
     >
       {title && (
         <Typography
-          variant="h5"
-          component="h2"
+          variant="h6"
+          component="h6"
           mb="2"
-          sx={{ color: "text.light" }}
+          sx={{ color: "text.light", mb: 2 }}
         >
-          TopArtists
+          {title}
         </Typography>
       )}
       {children}
