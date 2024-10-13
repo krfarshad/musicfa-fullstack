@@ -10,7 +10,7 @@ export const Section = (props: Props) => {
   return (
     <Box
       sx={{
-        mt: 8,
+        my: 1,
         py: 4,
         px: 2,
       }}
