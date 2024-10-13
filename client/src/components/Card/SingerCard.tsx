@@ -10,7 +10,7 @@ export const SingerCard = (props: Props) => {
   const { artist } = props;
   return (
     <Card variant="elevation" sx={{ width: 120, background: "transparent" }}>
-      <Box sx={{ borderRadius: "16px", width: "120px", height: "140px" }}>
+      <Box sx={{ borderRadius: "8px", width: "120px", height: "140px" }}>
         <Link href={`/singers/${artist.username}`}>
           <Image
             width={150}
@@ -20,7 +20,7 @@ export const SingerCard = (props: Props) => {
             objectFit="cover"
             priority={false}
             objectPosition="center"
-            className="h-full w-full rounded-2xl object-cover object-center"
+            className="h-full w-full rounded-lg object-cover object-center"
           />
         </Link>
       </Box>
