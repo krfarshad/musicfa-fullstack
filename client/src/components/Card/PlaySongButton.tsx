@@ -9,18 +9,7 @@ export const PlaySongButton = (props: Props) => {
   const { status } = props;
   return (
     <>
-      <IconButton
-        aria-label="play"
-        color="inherit"
-        size="small"
-        sx={{
-          position: "absolute",
-          bottom: 5,
-          left: 2,
-          zIndex: 10,
-          backgroundColor: "#999",
-        }}
-      >
+      <IconButton aria-label="play" color="inherit" size="small">
         {status == "play" ? <PlayArrowIcon /> : <PauseIcon />}
       </IconButton>
     </>
