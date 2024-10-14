@@ -9,14 +9,12 @@ interface Props {
 export const PlayListCard = (props: Props) => {
   const { playlist } = props;
   return (
-    <Card
-      variant="elevation"
-      sx={{ width: { xs: 180, md: 280 }, background: "transparent" }}
-    >
+    <Card variant="elevation" sx={{ width: 1, background: "transparent" }}>
       <Box
         sx={{
           borderRadius: "8px",
-          width: { xs: 180, md: 280 },
+
+          maxWidth: 1,
           height: "160px",
         }}
       >
@@ -29,7 +27,7 @@ export const PlayListCard = (props: Props) => {
             objectFit="cover"
             priority={false}
             objectPosition="center"
-            className="h-full w-full rounded-lg object-cover object-center"
+            className="h-full w-full max-w-full rounded-lg object-cover object-center"
           />
         </Link>
       </Box>
