@@ -1,8 +1,7 @@
-import { Box, Card, Link, Stack, Typography } from "@mui/material";
+import { Box, Card, Link, Stack } from "@mui/material";
 import Image from "next/image";
 import { PlaySongButton } from "./PlaySongButton";
 import { SongProp } from "@/features/music";
-import LikeButton from "./LikeButton";
 import SongActions from "./SongActions";
 
 type Props = {

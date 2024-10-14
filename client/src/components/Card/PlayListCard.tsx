@@ -1,30 +1,37 @@
-import { Box, Card, CardTypeMap, Typography } from "@mui/material";
-import avatar from "@/assets/images/avatar2.jpg";
+import { Box, Card, Link } from "@mui/material";
 import Image from "next/image";
-import { PlaySongButton } from "./PlaySongButton";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { PlaylistProp } from "@/features/playlist";
 
-interface Props extends OverridableComponent<CardTypeMap<{}, "div">> {}
+interface Props {
+  playlist: PlaylistProp;
+}
 
 export const PlayListCard = (props: Props) => {
+  const { playlist } = props;
   return (
-    <Card variant="outlined" sx={{ width: 150 }} {...props}>
-      <Box position="relative">
-        <Image
-          width={150}
-          height={150}
-          src={avatar.src}
-          alt="image"
-          objectFit="cover"
-          priority={false}
-          objectPosition="center"
-        />
-        <PlaySongButton status="play" />
+    <Card variant="elevation" sx={{ width: 160, background: "transparent" }}>
+      <Box sx={{ borderRadius: "8px", width: "160px", height: "160px" }}>
+        <Link href={`/playlists/${playlist.id}`}>
+          <Image
+            width={150}
+            height={250}
+            src={playlist.cover}
+            alt={playlist.name}
+            objectFit="cover"
+            priority={false}
+            objectPosition="center"
+            className="h-full w-full rounded-lg object-cover object-center"
+          />
+        </Link>
       </Box>
       <Box p={1}>
-        <Typography variant="body1" sx={{ textAlign: "center" }}>
-          Boom Boom
-        </Typography>
+        <Link
+          href={`/playlists/${playlist.id}`}
+          variant="body2"
+          sx={{ textAlign: "center", color: "text.light" }}
+        >
+          {playlist.name}
+        </Link>
       </Box>
     </Card>
   );
