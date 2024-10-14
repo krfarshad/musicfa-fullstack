@@ -23,6 +23,7 @@ export const Playlist = (props: Props) => {
                 alt={playlist.name}
                 width={400}
                 height={400}
+                className="object-cover object-center"
               />
             </Box>
             <Box flex={1}>
@@ -35,12 +36,13 @@ export const Playlist = (props: Props) => {
                 </Typography>
 
                 <Typography component="h6" variant="h6">
-                  {playlist.followers_count} followers count
+                  {playlist.followers_count} followers
                 </Typography>
                 <Stack>
-                  <Box>
+                  <Stack direction="row" spacing={1}>
                     <LikeButton />
-                  </Box>
+                    <Typography>{playlist.likes_count}</Typography>
+                  </Stack>
                   {!playlist.is_owner && (
                     <Box mt={1}>
                       {playlist.is_user_followed ? (
