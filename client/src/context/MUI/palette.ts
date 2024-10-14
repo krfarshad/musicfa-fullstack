@@ -144,7 +144,7 @@ const TEXT = {
 const BACKGROUND = {
   light: "#1C1C1C",
   dark: "#0D0D0D",
-  darkHot: "#222",
+  darkHot: "#000",
   scrimDark: "#111",
   scrimLight: "#FFFFFF60",
   hintCaution: "#FF6F0020",
