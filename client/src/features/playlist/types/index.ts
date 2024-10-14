@@ -14,4 +14,5 @@ export type PlaylistProp = {
   is_user_liked: boolean;
   followers_count: number;
   is_user_followed: boolean;
+  is_owner: boolean;
 };

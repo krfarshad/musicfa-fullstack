@@ -7,7 +7,7 @@ export const NewSongs = () => {
     <Section title="Newest Song">
       <Grid2 container spacing={1}>
         {latestSong.slice(1).map((song, index) => (
-          <Grid2 size={{ xs: 12, md: 6 }}>
+          <Grid2 size={{ xs: 12, md: 6 }} key={`music_${song.id}`}>
             <MusicCard
               key={`music_${song.name}`}
               song={song}

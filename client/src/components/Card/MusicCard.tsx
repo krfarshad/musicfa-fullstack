@@ -1,9 +1,10 @@
 import { Box, Card, Link, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { PlaySongButton } from "./PlaySongButton";
 import { SongProp } from "@/features/music";
-import SongActions from "./SongActions";
 import LikeButton from "./LikeButton";
+import dynamic from "next/dynamic";
+
+const DynamicActions = dynamic(() => import("./SongActions"), { ssr: false });
 
 type Props = {
   song: SongProp;
@@ -71,7 +72,7 @@ export const MusicCard = (props: Props) => {
             <Box sx={{ height: 1, display: "flex", alignItems: "center" }}>
               <LikeButton />
             </Box>
-            <SongActions />
+            <DynamicActions />
           </Stack>
         </Stack>
       </Stack>

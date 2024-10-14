@@ -44,6 +44,7 @@ export const playlists: PlaylistProp[] = [
     is_user_liked: true,
     followers_count: 1200,
     is_user_followed: true,
+    is_owner: false,
   },
   {
     id: 2,
@@ -74,6 +75,7 @@ export const playlists: PlaylistProp[] = [
     is_user_liked: true,
     followers_count: 900,
     is_user_followed: false,
+    is_owner: false,
   },
   {
     id: 3,
@@ -119,6 +121,7 @@ export const playlists: PlaylistProp[] = [
     is_user_liked: false,
     followers_count: 1100,
     is_user_followed: true,
+    is_owner: false,
   },
   {
     id: 4,
@@ -149,6 +152,8 @@ export const playlists: PlaylistProp[] = [
     likes_count: 2500,
     is_user_liked: false,
     followers_count: 800,
+    is_owner: false,
+
     is_user_followed: false,
   },
   {
@@ -181,5 +186,6 @@ export const playlists: PlaylistProp[] = [
     is_user_liked: true,
     followers_count: 1500,
     is_user_followed: true,
+    is_owner: false,
   },
 ];
