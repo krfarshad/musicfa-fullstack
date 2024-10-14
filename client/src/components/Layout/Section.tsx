@@ -4,9 +4,10 @@ import Typography from "@mui/material/Typography";
 
 interface Props extends ChildrenProps {
   title?: string;
+  variant?: string;
 }
 export const Section = (props: Props) => {
-  const { children, title } = props;
+  const { children, title, variant = "h6" } = props;
   return (
     <Box
       sx={{
@@ -17,8 +18,8 @@ export const Section = (props: Props) => {
     >
       {title && (
         <Typography
-          variant="h6"
-          component="h6"
+          variant={variant as any}
+          component={variant ? variant : ("h6" as any)}
           mb="2"
           sx={{ color: "text.light", mb: 2 }}
         >

@@ -8,7 +8,7 @@ export const LatestAlbums = () => {
     <Section title="Latest Albums">
       <Carousel gap="gap-6">
         {albumList.map((album) => (
-          <CarouselItem>
+          <CarouselItem key={`album_${album.id}`}>
             <AlbumCard album={album} />
           </CarouselItem>
         ))}
