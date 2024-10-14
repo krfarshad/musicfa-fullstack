@@ -8,10 +8,10 @@ export const Homepage = () => {
   return (
     <>
       <HomeTopBanner />
+      <RecommendPlaylist />
       <TopArtists />
       <NewSongs />
       <LatestAlbums />
-      <RecommendPlaylist />
     </>
   );
 };

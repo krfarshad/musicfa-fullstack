@@ -9,12 +9,21 @@ interface Props {
 export const PlayListCard = (props: Props) => {
   const { playlist } = props;
   return (
-    <Card variant="elevation" sx={{ width: 160, background: "transparent" }}>
-      <Box sx={{ borderRadius: "8px", width: "160px", height: "160px" }}>
+    <Card
+      variant="elevation"
+      sx={{ width: { xs: 180, md: 280 }, background: "transparent" }}
+    >
+      <Box
+        sx={{
+          borderRadius: "8px",
+          width: { xs: 180, md: 280 },
+          height: "160px",
+        }}
+      >
         <Link href={`/playlists/${playlist.id}`}>
           <Image
-            width={150}
-            height={250}
+            width={300}
+            height={300}
             src={playlist.cover}
             alt={playlist.name}
             objectFit="cover"

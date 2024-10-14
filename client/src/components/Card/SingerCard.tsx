@@ -9,8 +9,8 @@ interface Props {
 export const SingerCard = (props: Props) => {
   const { artist } = props;
   return (
-    <Card variant="elevation" sx={{ width: 120, background: "transparent" }}>
-      <Box sx={{ borderRadius: "8px", width: "120px", height: "140px" }}>
+    <Card variant="elevation" sx={{ width: 140, background: "transparent" }}>
+      <Box sx={{ borderRadius: "8px", width: 140, height: "140px" }}>
         <Link href={`/singers/${artist.username}`}>
           <Image
             width={150}

@@ -4,7 +4,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 1,
     name: "1989",
-    cover: "/images/album.avif",
+    cover: "/images/1989.webp",
 
     singer: {
       username: "taylor",
@@ -14,7 +14,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 2,
     name: "25",
-    cover: "/images/album.avif",
+    cover: "/images/25.jpg",
 
     singer: {
       username: "adele",
@@ -24,7 +24,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 3,
     name: "The Eminem Show",
-    cover: "/images/album.avif",
+    cover: "/images/show.jpg",
     singer: {
       username: "eminem",
       avatar: "/images/eminem.jpeg",
@@ -33,7 +33,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 4,
     name: "Lemonade",
-    cover: "/images/album.avif",
+    cover: "/images/lem.jpg",
 
     singer: {
       username: "beyonce",
@@ -43,7 +43,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 5,
     name: "Thank U, Next",
-    cover: "/images/album.avif",
+    cover: "/images/next.jpg",
 
     singer: {
       username: "ariana",
@@ -54,7 +54,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 7,
     name: "Chromatica",
-    cover: "/images/album.avif",
+    cover: "/images/chromatica.png",
 
     singer: {
       username: "gaga",
@@ -64,7 +64,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 8,
     name: "Justice",
-    cover: "/images/album.avif",
+    cover: "/images/justice.jpeg",
     singer: {
       username: "justin",
       avatar: "/images/Justin.jpg",
@@ -73,7 +73,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 9,
     name: "Future Nostalgia",
-    cover: "/images/album.avif",
+    cover: "/images/future.jpeg",
     singer: {
       username: "dua",
       avatar: "/images/dua.jpeg",
@@ -82,7 +82,7 @@ export const albumList: AlbumProp[] = [
   {
     id: 10,
     name: "Teenage Dream",
-    cover: "/images/album.avif",
+    cover: "/images/dream.webp",
     singer: {
       username: "katy",
       avatar: "/images/katy.webp",

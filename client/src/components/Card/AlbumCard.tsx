@@ -9,8 +9,8 @@ interface Props {
 export const AlbumCard = (props: Props) => {
   const { album } = props;
   return (
-    <Card variant="elevation" sx={{ width: 120, background: "transparent" }}>
-      <Box sx={{ borderRadius: "8px", width: "120px", height: "140px" }}>
+    <Card variant="elevation" sx={{ width: 180, background: "transparent" }}>
+      <Box sx={{ borderRadius: "8px", width: 180, height: "140px" }}>
         <Link href={`/albums/${album.id}`}>
           <Image
             width={150}

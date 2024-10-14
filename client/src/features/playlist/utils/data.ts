@@ -49,7 +49,7 @@ export const playlists: PlaylistProp[] = [
     id: 2,
     name: "Rap Legends",
     description: "Rap tracks from the biggest names in the game.",
-    cover: "/images/playlist-cover.jpg",
+    cover: "/images/playlist-cover-06.jpg",
     songs: [
       {
         id: 3,
@@ -79,7 +79,7 @@ export const playlists: PlaylistProp[] = [
     id: 3,
     name: "Divas Power",
     description: "Strong vocal performances from the world’s greatest divas.",
-    cover: "/images/playlist-cover.jpg",
+    cover: "/images/playlist-cover-03.jpg",
 
     songs: [
       {
@@ -124,7 +124,7 @@ export const playlists: PlaylistProp[] = [
     id: 4,
     name: "Epic Movie Soundtracks",
     description: "Iconic movie soundtracks from your favorite films.",
-    cover: "/images/playlist-cover.jpg",
+    cover: "/images/playlist-cover-04.webp",
 
     songs: [
       {
@@ -155,7 +155,7 @@ export const playlists: PlaylistProp[] = [
     id: 5,
     name: "Classic Love Songs",
     description: "The best love songs to set the mood.",
-    cover: "/images/playlist-cover.jpg",
+    cover: "/images/playlist-cover-05.avif",
 
     songs: [
       {
