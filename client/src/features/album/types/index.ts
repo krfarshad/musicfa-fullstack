@@ -1,3 +1,5 @@
+import { SongProp } from "@/features/music";
+
 export type AlbumProp = {
   id: number;
   name: string;
@@ -6,4 +8,5 @@ export type AlbumProp = {
     username: string;
     avatar: string;
   };
+  songs: SongProp[];
 };

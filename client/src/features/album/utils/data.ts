@@ -10,6 +10,22 @@ export const albumList: AlbumProp[] = [
       username: "taylor",
       avatar: "/images/tailor.jpg",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
   {
     id: 2,
@@ -20,6 +36,22 @@ export const albumList: AlbumProp[] = [
       username: "adele",
       avatar: "/images/adele.jpg",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
   {
     id: 3,
@@ -29,6 +61,22 @@ export const albumList: AlbumProp[] = [
       username: "eminem",
       avatar: "/images/eminem.jpeg",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
   {
     id: 4,
@@ -39,6 +87,22 @@ export const albumList: AlbumProp[] = [
       username: "beyonce",
       avatar: "/images/Beyoncé.webp",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
   {
     id: 5,
@@ -49,6 +113,22 @@ export const albumList: AlbumProp[] = [
       username: "ariana",
       avatar: "/images/ariana.webp",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
 
   {
@@ -60,6 +140,22 @@ export const albumList: AlbumProp[] = [
       username: "gaga",
       avatar: "/images/GaGa.jpg",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
   {
     id: 8,
@@ -69,6 +165,22 @@ export const albumList: AlbumProp[] = [
       username: "justin",
       avatar: "/images/Justin.jpg",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
   {
     id: 9,
@@ -78,6 +190,22 @@ export const albumList: AlbumProp[] = [
       username: "dua",
       avatar: "/images/dua.jpeg",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
   {
     id: 10,
@@ -87,5 +215,21 @@ export const albumList: AlbumProp[] = [
       username: "katy",
       avatar: "/images/katy.webp",
     },
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
   },
 ];

@@ -70,7 +70,6 @@ export const Playlist = (props: Props) => {
                 </Stack>
               ) : (
                 <p className="text-light text-sm">
-                  {" "}
                   Currently this playlist has no music!
                 </p>
               )}
