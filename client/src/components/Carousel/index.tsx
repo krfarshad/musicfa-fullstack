@@ -4,7 +4,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import { EmblaOptionsType } from "embla-carousel";
 import clsx from "clsx";
 
-
 interface Props extends ChildrenProps {
   options?: EmblaOptionsType;
   gap?: `gap-${string}`;

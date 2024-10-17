@@ -125,7 +125,6 @@ export default function PLayerBlade() {
                 height={70}
                 priority={false}
                 objectPosition="center"
-                objectCover="cover"
               />
             </CoverImage>
             <Box sx={{ ml: 1 }}>
@@ -216,11 +215,9 @@ export default function PLayerBlade() {
               mx={{ justifyContent: "flex-end", width: "100%" }}
             >
               <IconButton>
-                <FavoriteBorderIcon size="small" />
+                {/* <FavoriteBorderIcon size="small" /> */}
               </IconButton>
-              <IconButton>
-                <QueueMusicIcon size="small" />
-              </IconButton>
+              <IconButton>{/* <QueueMusicIcon size="small" /> */}</IconButton>
             </Stack>
             <Stack
               spacing={2}

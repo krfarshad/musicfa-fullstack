@@ -8,7 +8,7 @@ const TopArtists = () => {
     <Section title="Top Artists">
       <Carousel gap="gap-6">
         {topArtistList.map((artist) => (
-          <CarouselItem>
+          <CarouselItem key={`artist_${artist.id}`}>
             <SingerCard artist={artist} />
           </CarouselItem>
         ))}

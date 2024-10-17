@@ -1,9 +1,7 @@
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 
-type Props = {};
-const LikeButton = (props: Props) => {
-  const {} = props;
+const LikeButton = () => {
   return (
     <>
       <IconButton

@@ -20,7 +20,7 @@ export default function MUIAppLayout(props: Props) {
   const checkDefaultSidebar = () => {
     const savedState = localStorage.getItem("sidebarOpen");
     if (savedState) {
-      const { width }: any = ref?.current?.getBoundingClientRect();
+      const { width = 0 } = ref?.current?.getBoundingClientRect() || {};
       if (width && width < 900) {
         return false;
       }

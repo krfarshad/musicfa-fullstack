@@ -1,3 +1,4 @@
+import { PaletteColorOptions } from "@mui/material/styles";
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     tertiary: PaletteColor;

@@ -9,7 +9,7 @@ const RecommendPlaylist = () => {
     <Section title="Top Playlists">
       <Carousel gap="gap-6">
         {playlists.map((playlist) => (
-          <CarouselItem>
+          <CarouselItem key={`playlist_${playlist.id}`}>
             <Box sx={{ width: { xs: 180, md: 280 } }}>
               <PlayListCard playlist={playlist} />
             </Box>
