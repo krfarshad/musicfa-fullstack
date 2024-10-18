@@ -17,7 +17,12 @@ export type MenuProp = {
   }[];
 };
 
-const iconProps: IconProps = { size: 18, color: "#fff", variant: "Broken" };
+const iconProps: IconProps = {
+  size: 18,
+  color: "#fff",
+  variant: "Broken",
+  className: "mx-auto",
+};
 
 export const menuItems: MenuProp[] = [
   {

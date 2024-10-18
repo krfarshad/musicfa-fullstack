@@ -1,0 +1,191 @@
+import { PlaylistProp } from "../types";
+export const playlists: PlaylistProp[] = [
+  {
+    id: 1,
+    name: "Top Pop Hits",
+    description: "The biggest pop hits from the world's top artists.",
+    cover: "/images/playlist-cover.jpg",
+
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+      {
+        id: 2,
+        name: "Hello",
+        slug: "hello",
+        singer: {
+          username: "adele",
+          name: "Adele",
+          avatar: "/images/adele.jpg",
+        },
+        likes_count: 22000,
+        plays_count: 750000,
+        is_user_liked: false,
+        cover: "/images/cover.jpg",
+      },
+    ],
+    creator: {
+      username: "pop_fan123",
+    },
+    is_public: true,
+    likes_count: 5000,
+    is_user_liked: true,
+    followers_count: 1200,
+    is_user_followed: true,
+    is_owner: false,
+  },
+  {
+    id: 2,
+    name: "Rap Legends",
+    description: "Rap tracks from the biggest names in the game.",
+    cover: "/images/playlist-cover-06.jpg",
+    songs: [
+      {
+        id: 3,
+        name: "Lose Yourself",
+        slug: "lose-yourself",
+        singer: {
+          username: "eminem",
+          name: "Eminem",
+          avatar: "/images/eminem.jpeg",
+        },
+        likes_count: 18000,
+        plays_count: 980000,
+        is_user_liked: true,
+        cover: "/images/cover.jpg",
+      },
+    ],
+    creator: {
+      username: "rap_master",
+    },
+    is_public: true,
+    likes_count: 3000,
+    is_user_liked: true,
+    followers_count: 900,
+    is_user_followed: false,
+    is_owner: false,
+  },
+  {
+    id: 3,
+    name: "Divas Power",
+    description: "Strong vocal performances from the world’s greatest divas.",
+    cover: "/images/playlist-cover-03.jpg",
+
+    songs: [
+      {
+        id: 4,
+        name: "Halo",
+        slug: "halo",
+        singer: {
+          username: "beyonce",
+          name: "Beyoncé",
+          avatar: "/images/Beyoncé.webp",
+        },
+        likes_count: 20000,
+        plays_count: 860000,
+        is_user_liked: false,
+        cover: "/images/cover.jpg",
+      },
+      {
+        id: 5,
+        name: "Rain on Me",
+        slug: "rain-on-me",
+        singer: {
+          username: "gaga",
+          name: "Lady Gaga",
+          avatar: "/images/GaGa.jpg",
+        },
+        likes_count: 14000,
+        plays_count: 630000,
+        is_user_liked: true,
+        cover: "/images/cover.jpg",
+      },
+    ],
+    creator: {
+      username: "diva_lover",
+    },
+    is_public: true,
+    likes_count: 4000,
+    is_user_liked: false,
+    followers_count: 1100,
+    is_user_followed: true,
+    is_owner: false,
+  },
+  {
+    id: 4,
+    name: "Epic Movie Soundtracks",
+    description: "Iconic movie soundtracks from your favorite films.",
+    cover: "/images/playlist-cover-04.webp",
+
+    songs: [
+      {
+        id: 1,
+        name: "Love Story",
+        slug: "love-story",
+        singer: {
+          username: "taylor",
+          name: "Taylor Swift",
+          avatar: "/images/taylor.png",
+        },
+        likes_count: 15000,
+        plays_count: 500000,
+        is_user_liked: true,
+        cover: "/images/tailor.jpg",
+      },
+    ],
+    creator: {
+      username: "movie_buff",
+    },
+    is_public: false,
+    likes_count: 2500,
+    is_user_liked: false,
+    followers_count: 800,
+    is_owner: false,
+
+    is_user_followed: false,
+  },
+  {
+    id: 5,
+    name: "Classic Love Songs",
+    description: "The best love songs to set the mood.",
+    cover: "/images/playlist-cover-05.avif",
+
+    songs: [
+      {
+        id: 2,
+        name: "Hello",
+        slug: "hello",
+        singer: {
+          username: "adele",
+          name: "Adele",
+          avatar: "/images/adele.jpg",
+        },
+        likes_count: 22000,
+        plays_count: 750000,
+        is_user_liked: false,
+        cover: "/images/cover.jpg",
+      },
+    ],
+    creator: {
+      username: "romantic_heart",
+    },
+    is_public: true,
+    likes_count: 6000,
+    is_user_liked: true,
+    followers_count: 1500,
+    is_user_followed: true,
+    is_owner: false,
+  },
+];

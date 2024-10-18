@@ -1,39 +1,75 @@
-import Link from "next/link";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import { menuItems } from "./menuItems";
 import { Logo } from "../Logo";
 import { LoginSidebar } from "./LoginSidebar";
+import List from "@mui/material/List";
+import { Box, Stack, Typography } from "@mui/material";
+import Link from "next/link";
 
 export const Sidebar = () => {
   return (
-    <div className="flex h-screen w-64 flex-col bg-[#110f11] py-4">
-      <div className="mb-6 flex h-20 justify-center px-4">
+    <Stack
+      direction="column"
+      spacing={2}
+      sx={{
+        height: "100%",
+        justifyContent: "space-between",
+        alignItems: "stretch",
+      }}
+    >
+      <Box p={2} textAlign="center">
         <Logo />
-      </div>
-      <div className="flex-1 overflow-y-auto">
+      </Box>
+      <Box sx={{ flex: "1 1 0%" }}>
         {menuItems.map((menu) => (
-          <div key={`parent_menu_${menu.title}`} className="mb-4 ">
-            <p className="mb-1 ml-4 text-sm font-light text-pink-400">
+          <>
+            <Typography
+              variant="body1"
+              component="h5"
+              sx={{ fontWeight: "semibold" }}
+              px={2}
+              pt={4}
+            >
               {menu.title}
-            </p>
-            <nav>
-              <ul>
-                {menu.items.map((item) => (
-                  <li key={`menu_item_${item.link}_${item.title}`}>
-                    <Link
-                      className="flex w-full items-center gap-2 px-2.5 py-2.5 pl-8 text-[13px] font-light transition-all hover:border-r-4 hover:border-red-600 hover:bg-[#212121] hover:transition-all"
-                      href={item.link}
-                    >
-                      {item.icon}
-                      {item.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+            </Typography>
+            <List key={`menu_head_${menu.title}}`}>
+              {menu.items.map((item) => (
+                <ListItem
+                  disablePadding
+                  key={`child_${menu.title}_${item.title}`}
+                >
+                  <Link
+                    href={item.link}
+                    style={{
+                      color: "#fff",
+                      textDecoration: "none",
+                      width: "100%",
+                    }}
+                  >
+                    <ListItemButton>
+                      <ListItemIcon sx={{ width: "28px" }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <Typography
+                        variant="body1"
+                        sx={{ fontSize: "13px!important" }}
+                        color="light"
+                      >
+                        {item.title}
+                      </Typography>
+                    </ListItemButton>
+                  </Link>
+                </ListItem>
+              ))}
+            </List>
+            <Divider />
+          </>
         ))}
-      </div>
+      </Box>
       <LoginSidebar />
-    </div>
+    </Stack>
   );
 };

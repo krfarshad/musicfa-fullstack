@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/usr/src/app
+    environment:
+      NODE_ENV: development
+    networks:
+      - fullstack-network
+    depends_on:
+      - db
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/usr/src/app
+    environment:
+      NODE_ENV: development
+    networks:
+      - fullstack-network
+    depends_on:
+      - backend
+
+  db:
+    image: mongo:5.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - fullstack-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  fullstack-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

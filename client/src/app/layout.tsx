@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppProvider } from "@/providers";
-import { AppLayout } from "@/layouts";
+import { AppProvider } from "@/context";
+import MUIAppLayout from "@/layouts/MUIAppLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppProvider>
-          <AppLayout>{children}</AppLayout>
+          <MUIAppLayout>{children}</MUIAppLayout>
         </AppProvider>
       </body>
     </html>
