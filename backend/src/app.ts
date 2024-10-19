@@ -5,33 +5,36 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import mongoose from "mongoose";
+import MongoStore from "connect-mongo";
+import "./strategies/local-strategy";
 
 dotenv.config();
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost:27017/musicfa_db")
+  .connect("mongodb://db:27017/musicfa")
   .then(() => console.log("Connected to Database"))
   .catch((err) => console.log(`Error: ${err}`));
 
 app.use(express.json());
+app.use(cookieParser("secret"));
 
-// saveUninitialized doesn't need save session of users don't have actions
 app.use(
   session({
-    secret: "farshad dev",
-    saveUninitialized: false,
+    secret: "anson the dev",
+    saveUninitialized: true,
     resave: false,
     cookie: {
       maxAge: 60000 * 60,
     },
+    store: MongoStore.create({
+      client: mongoose.connection.getClient(),
+    }),
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(routes);
-app.use(cookieParser("secret"));
 
 const PORT = process.env.PORT || 5000;
 
@@ -53,11 +56,6 @@ declare module "express-session" {
 }
 
 app.get("/api/albums", (req, res) => {
-  res.cookie("token", "ads;lfaklshjgalksgag", {
-    maxAge: 10 * 60 * 60 * 1,
-    signed: true,
-  });
-
   req.session.visited = true;
   const sortOrder = req.query?.sort || "asc";
   const sortedData = mockData.sort((a, b) => {

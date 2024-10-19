@@ -1,40 +1,35 @@
 import { Router } from "express";
+import { checkSchema } from "express-validator";
+import { createUserValidationSchema } from "../../utils/registerValidation";
+import { AuthController } from "../../controllers/auth";
+import passport from "passport";
 
-export const mockUsers = [
-  { id: 1, username: "farshad", password: "123456" },
-  { id: 1, username: "ali", password: "123456" },
-];
 const router = Router();
 
 declare module "express-session" {
   interface SessionData {
-    user: (typeof mockUsers)[0]; // Make it optional
+    user: {
+      username: string;
+      password: string;
+    };
   }
 }
 
-router.post("/api/auth", (req, res) => {
-  const {
-    body: { username, password },
-  } = req;
-  const findUser = mockUsers.find((user) => user.username === username);
-  if (!findUser)
-    res.status(401).send({
-      data: null,
-      status: 401,
-      msg: "Bad request!",
-    });
-  if (findUser && findUser.password !== password)
-    res.status(401).send({
-      data: null,
-      status: 401,
-      msg: "Bad request!",
-    });
-
-  if (findUser) req.session.user = findUser as any;
-  res.status(200).send({
-    data: findUser,
+// login
+router.post("/api/auth/login", passport.authenticate("local"), (req, res) => {
+  res.sendStatus(200).send({
+    data: null,
     status: 200,
-    msg: "Logged in successfully",
+    msg: "successful login",
+  });
+});
+
+// logout
+router.post("/api/auth/logout", (req, res) => {
+  if (!req.user) res.sendStatus(401);
+  req.logout((err) => {
+    if (err) res.sendStatus(400);
+    res.send(200);
   });
 });
 
@@ -45,21 +40,15 @@ router.get("/api/auth/status", (req, res) => {
   res.status(200).send({ data: user, status: 200, msg: "logged in" });
 });
 
-router.get("/api/auth/data", (req, res) => {
-  const user = req.session.user;
-  if (!user) {
-    res.status(403).send({
-      data: null,
-      status: 403,
-      msg: "This route is protected",
-    });
+// discord
+router.get("/api/auth/discord", passport.authenticate("discord"));
 
-    res.status(200).send({
-      data: mockUsers,
-      status: 200,
-      msg: "success",
-    });
+// register
+router.post(
+  "/api/auth/register",
+  checkSchema(createUserValidationSchema),
+  async (req: any, res: any) => {
+    await AuthController.register(req, res);
   }
-});
-
+);
 export default router;
