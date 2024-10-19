@@ -16,27 +16,66 @@ declare module "express-session" {
 }
 
 // login
-router.post("/api/auth/login", passport.authenticate("local"), (req, res) => {
-  res.sendStatus(200).send({
-    data: null,
-    status: 200,
-    msg: "successful login",
-  });
+router.post("/api/auth/login", (req, res, next) => {
+  passport.authenticate("local", (err: any, user: any, info: any) => {
+    if (err) {
+      return res.status(500).send({
+        data: null,
+        status: 500,
+        msg: err.message,
+      });
+    }
+
+    if (!user) {
+      return res.status(401).send({
+        data: null,
+        status: 401,
+        msg: info.message || "Authentication failed",
+      });
+    }
+
+    req.logIn(user, (err) => {
+      if (err) {
+        return res.status(500).send({
+          data: null,
+          status: 500,
+          msg: err.message,
+        });
+      }
+
+      return res.status(200).send({
+        data: user,
+        status: 200,
+        msg: "Successful login",
+      });
+    });
+  })(req, res, next);
 });
 
 // logout
 router.post("/api/auth/logout", (req, res) => {
-  if (!req.user) res.sendStatus(401);
+  if (!req.user)
+    res.status(401).send({
+      data: null,
+      status: 401,
+      msg: "Invalid data",
+    });
   req.logout((err) => {
     if (err) res.sendStatus(400);
-    res.send(200);
+    res.status(200).send({
+      data: null,
+      status: 200,
+      msg: "successful logout",
+    });
   });
 });
 
+// check status
 router.get("/api/auth/status", (req, res) => {
   const user = req.session.user;
-  if (!user)
-    res.status(200).send({ data: null, status: 401, msg: "Not logged in" });
+  if (!user) {
+    res.status(401).send({ data: null, status: 401, msg: "Not logged in" });
+  }
   res.status(200).send({ data: user, status: 200, msg: "logged in" });
 });
 
