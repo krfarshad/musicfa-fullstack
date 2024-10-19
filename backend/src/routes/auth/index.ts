@@ -44,7 +44,10 @@ router.post("/api/auth/login", (req, res, next) => {
       }
 
       return res.status(200).send({
-        data: user,
+        data: {
+          username: user.username,
+          role: user.role,
+        },
         status: 200,
         msg: "Successful login",
       });
@@ -65,18 +68,24 @@ router.post("/api/auth/logout", (req, res) => {
     res.status(200).send({
       data: null,
       status: 200,
-      msg: "successful logout",
+      msg: "Successful logout",
     });
   });
 });
 
 // check status
 router.get("/api/auth/status", (req, res) => {
-  const user = req.session.user;
+  const user: any = req.user;
   if (!user) {
     res.status(401).send({ data: null, status: 401, msg: "Not logged in" });
   }
-  res.status(200).send({ data: user, status: 200, msg: "logged in" });
+  res.status(200).send({
+    data: {
+      username: user?.username as any,
+    },
+    status: 200,
+    msg: "User is logged in",
+  });
 });
 
 // discord
