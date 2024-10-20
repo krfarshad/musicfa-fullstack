@@ -1,7 +1,7 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { User } from "../models/user";
 import { comparePassword } from "../utils/passwordUtils";
+import { User } from "../database/models/user-model";
 
 passport.serializeUser((user: any, done) => {
   done(null, user.id);

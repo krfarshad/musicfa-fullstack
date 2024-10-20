@@ -1,9 +1,9 @@
 import * as validator from "express-validator";
 import { getUserByIdHandler, createUserHandler } from "../handlers/users";
-import { User } from "../models/user";
 import { mockData } from "../utils/mockData";
 import { hashPassword } from "../utils/passwordUtils";
 import { validationResult, ValidationError, Result } from "express-validator";
+import { User } from "../database/models/user-model";
 
 jest.mock("express-validator", () => ({
   validationResult: jest.fn(() => ({
