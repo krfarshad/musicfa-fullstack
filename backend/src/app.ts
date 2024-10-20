@@ -7,6 +7,7 @@ import passport from "passport";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 import "./strategies/local-strategy";
+import { mockData } from "./utils/mockData";
 
 dotenv.config();
 const app = express();
@@ -37,13 +38,6 @@ app.use(passport.session());
 app.use(routes);
 
 const PORT = process.env.PORT || 5000;
-
-export const mockData = [
-  { id: 1, name: "first", value: 200 },
-  { id: 2, name: "second", value: 2100 },
-  { id: 3, name: "third", value: 20 },
-  { id: 4, name: "forth", value: 10 },
-];
 
 app.get("/", (req, res) => {
   res.status(200).send({ msg: "hello" });
