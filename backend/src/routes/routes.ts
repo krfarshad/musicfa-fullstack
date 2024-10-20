@@ -1,12 +1,9 @@
-const routes = require("express").Router();
+import { Router } from "express";
 import albumsRouter from "./albums/index";
-import authRouter from "./auth/index";
+import authRouter from "./auth/auth-route";
 
-routes.use(albumsRouter);
-routes.use(authRouter);
+const router: Router = Router();
+router.use(authRouter);
+router.use(albumsRouter);
 
-// routes.get("/", (req, res) => {
-//   res.status(200).json({ message: "Connected!" });
-// });
-
-export default routes;
+export default router;
