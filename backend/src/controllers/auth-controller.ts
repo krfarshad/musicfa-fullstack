@@ -1,7 +1,7 @@
 import { matchedData, validationResult } from "express-validator";
-import { hashPassword } from "../utils/passwordUtils";
+import { comparePassword, hashPassword } from "../utils/passwordUtils";
 import { User } from "../database/models/user-model";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, response, Response } from "express";
 import passport from "passport";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
@@ -76,40 +76,88 @@ class AuthHandler {
       msg: "User is logged in",
     });
   });
+
+  // @desc login user
+  // @route POST /api/v1/auth/login
+  // @access public
   public login = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
-      passport.authenticate("local", (err: any, user: any, info: any) => {
-        if (err) {
-          res.status(401);
-          throw new Error(err);
-        }
+      const { username, password } = req.body;
 
-        if (!user) {
-          res.status(404);
-          throw new Error("Wrong username or password!");
-        }
+      const user: any = await User.findOne({ username });
 
-        req.logIn(user, (err) => {
-          if (err) {
-            res.status(500);
-            throw new Error(err);
-          }
-          const accessToken = jwt.sign({ id: user.id }, config.jwt_secret, {
-            expiresIn: "15m",
-          });
-          res.status(200).send({
-            data: {
-              username: user.username,
-              role: user.role,
-              token: accessToken,
-            },
-            status: 200,
-            msg: "Successful login",
-          });
+      if (!user) {
+        res.status(401).json({
+          status: 401,
+          msg: "Incorrect username or password",
         });
+      }
+
+      const isMatch = await comparePassword(password, user.password);
+      if (!isMatch) {
+        res.status(401).json({
+          status: 401,
+          msg: "Incorrect username or password",
+        });
+      }
+
+      const accessToken = jwt.sign({ id: user.id }, config.jwt_secret, {
+        expiresIn: "8h",
+      });
+
+      const refreshToken = jwt.sign(
+        { id: user.id },
+        config.refresh_token_secret,
+        {
+          expiresIn: "4d",
+        }
+      );
+
+      res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      });
+
+      res.status(200).json({
+        data: {
+          username: user.username,
+          role: user.role,
+          token: accessToken,
+        },
+        status: 200,
+        msg: "Successful login",
       });
     }
   );
+  // @desc refresh token
+  // @route POST /api/v1/auth/refresh-token
+  // @access public
+  public refreshToken = asyncHandler(async (req: Request, res: Response) => {
+    const { refreshToken } = req.cookies;
+    const { csrfToken } = req.body;
+
+    if (!csrfToken || !csrfToken.verify(process.env.CSRF_SECRET, csrfToken)) {
+      res.status(403).json({ message: "Invalid CSRF token" });
+    }
+    if (!refreshToken) {
+      res.status(401).json({ message: "No refresh token" });
+    }
+
+    jwt.verify(
+      refreshToken,
+      config.refresh_token_secret,
+      (err: any, user: any) => {
+        if (err) res.status(403).json({ message: "Invalid refresh token" });
+
+        const newAccessToken = jwt.sign({ id: user.id }, config.jwt_secret, {
+          expiresIn: "15m",
+        });
+
+        res.json({ accessToken: newAccessToken });
+      }
+    );
+  });
 }
 
 export const AuthController = new AuthHandler();
