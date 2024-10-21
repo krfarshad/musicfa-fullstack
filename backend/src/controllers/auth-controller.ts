@@ -4,6 +4,9 @@ import { User } from "../database/models/user-model";
 import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 import asyncHandler from "express-async-handler";
+import jwt from "jsonwebtoken";
+import { config } from "../config/global.config";
+
 class AuthHandler {
   // @desc Register user
   // @route POST /api/v1/auth/user
@@ -91,11 +94,14 @@ class AuthHandler {
             res.status(500);
             throw new Error(err);
           }
-
+          const accessToken = jwt.sign({ id: user.id }, config.jwt_secret, {
+            expiresIn: "15m",
+          });
           res.status(200).send({
             data: {
               username: user.username,
               role: user.role,
+              token: accessToken,
             },
             status: 200,
             msg: "Successful login",

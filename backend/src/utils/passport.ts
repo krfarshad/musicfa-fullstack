@@ -1,7 +1,12 @@
 import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
-import { comparePassword } from "../utils/passwordUtils";
 import { User } from "../database/models/user-model";
+import { config } from "../config/global.config";
+import { ExtractJwt, Strategy as JWTStrategy } from "passport-jwt";
+
+const jwtConfig = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: config.jwt_secret,
+};
 
 passport.serializeUser((user: any, done) => {
   done(null, user.id);
@@ -19,17 +24,10 @@ passport.deserializeUser(async (id, done) => {
 });
 
 export default passport.use(
-  new LocalStrategy(async (username, password, done) => {
+  new JWTStrategy(jwtConfig, async (payload, done) => {
     try {
-      const findUser = await User.findOne({ username });
+      const findUser = await User.findById(payload.id);
       if (!findUser) throw new Error("User not found");
-
-      if (
-        typeof findUser.password == "string" &&
-        !comparePassword(password, findUser.password)
-      ) {
-        throw new Error("Incorrect password or username");
-      }
       done(null, findUser);
     } catch (err) {
       done(err);
