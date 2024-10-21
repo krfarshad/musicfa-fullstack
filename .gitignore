@@ -2,4 +2,4 @@
 */.pnpm
 */.next
 **/.env
-
+**/*.log

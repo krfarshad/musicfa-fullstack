@@ -1,25 +1,34 @@
 import { matchedData, validationResult } from "express-validator";
-import { User } from "../models/user";
 import { mockData } from "../utils/mockData";
 import { hashPassword } from "../utils/passwordUtils";
+import { User } from "../database/models/user-model";
+import { Request, Response } from "express";
 
-export const getUserByIdHandler = (request: any, response: any) => {
-  const { findUserIndex } = request;
+export const getUserByIdHandler = (req: Request, res: Response) => {
+  // @ts-ignore
+  const { findUserIndex } = req;
   const findUser = mockData[findUserIndex];
-  if (!findUser) return response.sendStatus(404);
-  return response.send(findUser);
+  if (!findUser) {
+    res.status(404);
+    throw new Error("User not found!");
+  }
+  return res.send(findUser);
 };
 
-export const createUserHandler = async (request: any, response: any) => {
-  const result = validationResult(request);
-  if (!result.isEmpty()) return response.status(400).send(result.array());
-  const data = matchedData(request);
+export const createUserHandler = async (req: Request, res: Response) => {
+  const result = validationResult(req);
+  if (!result.isEmpty()) {
+    res.status(400);
+    throw new Error(`${result.array}`);
+  }
+  const data = matchedData(req);
   data.password = hashPassword(data.password);
   const newUser = new User(data);
   try {
     const savedUser = await newUser.save();
-    return response.status(201).send(savedUser);
+    res.status(201).send(savedUser);
   } catch (err) {
-    return response.sendStatus(400);
+    res.status(400);
+    throw new Error(`${err}`);
   }
 };
