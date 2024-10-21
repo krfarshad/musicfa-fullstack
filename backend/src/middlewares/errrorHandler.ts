@@ -1,4 +1,5 @@
 import { NextFunction, Response, Request } from "express";
+import logger from "../utils/logger";
 
 export const errorHandler = (
   err: Error,
@@ -14,6 +15,10 @@ export const errorHandler = (
     msg: err,
     stackTrace: err.stack,
   });
+
+  if (statusCode == 500) {
+    logger.error(err);
+  }
 
   next();
 };
