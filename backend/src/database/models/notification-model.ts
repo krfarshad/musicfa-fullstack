@@ -11,7 +11,7 @@ const notificationSchema = new mongoose.Schema({
     required: true,
   },
   type: {
-    type: String, // e.g., 'message', 'comment', 'like'
+    type: String, 
     required: true,
   },
   read: {
@@ -19,7 +19,7 @@ const notificationSchema = new mongoose.Schema({
     default: false,
   },
   link: {
-    type: String, // URL to the notification's related content
+    type: String, 
   },
   createdAt: {
     type: Date,
