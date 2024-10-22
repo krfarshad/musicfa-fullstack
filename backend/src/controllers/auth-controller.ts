@@ -1,8 +1,7 @@
 import { matchedData, validationResult } from "express-validator";
 import { comparePassword, hashPassword } from "../utils/passwordUtils";
 import { User } from "../database/models/user-model";
-import { NextFunction, Request, response, Response } from "express";
-import passport from "passport";
+import { NextFunction, Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import { config } from "../config/global.config";
@@ -137,7 +136,7 @@ class AuthHandler {
     const { refreshToken } = req.cookies;
     const { csrfToken } = req.body;
 
-    if (!csrfToken || !csrfToken.verify(process.env.CSRF_SECRET, csrfToken)) {
+    if (!csrfToken || !csrfToken.verify(config.csrf_secret, csrfToken)) {
       res.status(403).json({ message: "Invalid CSRF token" });
     }
     if (!refreshToken) {
