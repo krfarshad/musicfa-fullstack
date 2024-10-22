@@ -5,6 +5,11 @@ const playlistSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   description: {
     type: String,
   },
@@ -32,4 +37,4 @@ const playlistSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Playlist", playlistSchema);
+export const Playlist = mongoose.model("Playlist", playlistSchema);
