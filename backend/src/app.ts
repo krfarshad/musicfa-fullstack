@@ -11,6 +11,11 @@ import { errorHandler } from "./middlewares/errrorHandler";
 import logger from "./utils/logger";
 import { config } from "./config/global.config";
 import session from "express-session";
+import helmet from "helmet";
+import cors from "cors";
+import swaggerJSDoc from "swagger-jsdoc";
+import { swaggerOptions } from "./utils/swager-doc";
+import swaggerUi from "swagger-ui-express";
 
 const app: express.Application = express();
 dotenv.config();
@@ -35,9 +40,17 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
+app.use(helmet());
 
 app.use("/api/v1/", routes);
 app.use(errorHandler);
-app.listen(config.port, () => {
-  logger.info(`server is running in ${config.port}`);
+
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+const port = config.port || 5000;
+app.listen(5000, () => {
+  logger.info(`server is running in ${port}`);
 });
