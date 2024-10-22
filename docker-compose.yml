@@ -15,21 +15,22 @@ services:
       - fullstack-network
     depends_on:
       - db
+    restart: always
 
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./client:/usr/src/app
-    environment:
-      NODE_ENV: development
-    networks:
-      - fullstack-network
-    depends_on:
-      - backend
+  # client:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./client:/usr/src/app
+  #   environment:
+  #     NODE_ENV: development
+  #   networks:
+  #     - fullstack-network
+  #   depends_on:
+  #     - backend
 
   db:
     image: mongo:5.0
@@ -40,6 +41,9 @@ services:
       - fullstack-network
     volumes:
       - mongo-data:/data/db
+    logging:
+      driver: "none"
+    command: ["mongod", "--quiet"]
 
 networks:
   fullstack-network:

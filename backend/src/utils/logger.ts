@@ -1,15 +1,7 @@
 import winston, { format, transports } from "winston";
 import { config } from "../config/global.config";
 import SlackHook from "winston-slack-webhook-transport";
-import fs from "fs";
-import path from "path";
 
-const logDir = path.join(__dirname, "logs");
-
-// Ensure logs directory exists
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir, { recursive: true });
-}
 const isDev = config.env === "dev";
 const { printf } = format;
 

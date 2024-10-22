@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const albumSchema = new mongoose.Schema({
   title: {
@@ -12,10 +12,6 @@ const albumSchema = new mongoose.Schema({
   },
   releaseDate: {
     type: Date,
-  },
-  genre: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Genre",
   },
   tracks: [
     {

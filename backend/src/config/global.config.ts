@@ -5,8 +5,8 @@ configDotenv();
 export const config = {
   env: process.env.MODE || "dev",
   port: process.env.PORT || "5003",
-  session_secret: process.env.SESSION_SECRET ?? "",
-  crfToken: process.env.CRF_TOKEN ?? "",
-  refreshToken: process.env.REFRESH_TOKEN ?? "",
+  jwt_secret: process.env.JWT_SECRET ?? "",
+  csrf_secret: process.env.CSRF_SECRET ?? "",
+  refresh_token_secret: process.env.REFRESH_TOKEN_SECRET ?? "",
   slack_url: process.env.SLACK_WEBHOOK_URL ?? "",
 };

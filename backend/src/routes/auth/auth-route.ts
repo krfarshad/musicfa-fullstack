@@ -20,4 +20,6 @@ router.post("/auth/logout", AuthController.logout);
 
 router.get("/auth/discord", passport.authenticate("discord"));
 
+router.get("/auth/refresh-token", AuthController.refreshToken);
+
 export default router;

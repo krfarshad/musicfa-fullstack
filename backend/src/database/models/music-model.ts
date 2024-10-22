@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const musicSchema = new mongoose.Schema({
   title: {
@@ -14,12 +14,8 @@ const musicSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Album",
   },
-  genre: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Genre",
-  },
   duration: {
-    type: Number, // Duration in seconds
+    type: Number,
     required: true,
   },
   releaseDate: {
