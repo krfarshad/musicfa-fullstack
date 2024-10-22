@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const artistSchema = new mongoose.Schema({
   name: {
@@ -13,21 +13,9 @@ const artistSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
-  socialMedia: {
-    twitter: String,
-    facebook: String,
-    instagram: String,
-    youtube: String,
-  },
   avatarUrl: {
     type: String,
   },
-  genres: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Genre",
-    },
-  ],
   createdAt: {
     type: Date,
     default: Date.now,
