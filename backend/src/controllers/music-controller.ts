@@ -1,8 +1,9 @@
 import asyncHandler from "express-async-handler";
 import { Request, Response } from "express";
-
+import { ApiSuccess } from "../utils/ApiSuccess";
+import { ApiError } from "../utils/ApiError";
 class MusicHandler {
-  public getAlbums = asyncHandler(async (req: Request, res: Response) => {});
+  public getMusics = asyncHandler(async (req: Request, res: Response) => {});
   public getMusic = asyncHandler(async (req: Request, res: Response) => {});
   public removeMusic = asyncHandler(async (req: Request, res: Response) => {});
   public updateMusic = asyncHandler(async (req: Request, res: Response) => {});

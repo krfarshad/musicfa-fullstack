@@ -10,12 +10,13 @@ import dotenv from "dotenv";
 import { errorHandler } from "./middlewares/errrorHandler";
 import logger from "./utils/logger";
 import { config } from "./config/global.config";
-import session from "express-session";
 import helmet from "helmet";
 import cors from "cors";
 import swaggerJSDoc from "swagger-jsdoc";
 import { swaggerOptions } from "./utils/swager-doc";
 import swaggerUi from "swagger-ui-express";
+
+const session = require("express-session");
 
 const app: express.Application = express();
 dotenv.config();
@@ -24,9 +25,8 @@ app.use(express.json());
 app.use(cookieParser("secret"));
 
 app.use(
-  // @ts-ignore
   session({
-    secret: process.env.SESSION_SECRET || "default session",
+    secret: "default session",
     saveUninitialized: true,
     resave: true,
     cookie: {

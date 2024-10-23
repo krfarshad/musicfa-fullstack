@@ -97,4 +97,4 @@ class PlaylistHandler {
   });
 }
 
-export default PlaylistHandler;
+export const PlaylistController = new PlaylistHandler();
