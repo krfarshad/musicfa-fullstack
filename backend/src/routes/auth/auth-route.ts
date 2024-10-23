@@ -7,7 +7,7 @@ import passport from "passport";
 const router = Router();
 
 router.post(
-  "/api/auth/register",
+  "/auth/register",
   checkSchema(createUserValidationSchema),
   AuthController.register
 );
