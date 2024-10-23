@@ -1,7 +1,7 @@
 import { matchedData, validationResult } from "express-validator";
 import { comparePassword, hashPassword } from "../utils/passwordUtils";
 import { User } from "../database/models/user-model";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import { config } from "../config/global.config";
@@ -9,13 +9,29 @@ import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
 
 class AuthHandler {
+  private tokenCreation = async (req: Request, res: Response, user: any) => {
+    const accessToken = jwt.sign({ id: user.id }, config.jwt_secret, {
+      expiresIn: "8h",
+    });
+    const refreshToken = jwt.sign(
+      { id: user.id },
+      config.refresh_token_secret,
+      { expiresIn: "4d" }
+    );
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+    return accessToken;
+  };
   // @desc Register user
   // @route POST /api/v1/auth/user
   // @access public
   public register = asyncHandler(async (req: Request, res: Response) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      res.status(400).json(new ApiError(400, `${result.array()}`));
+      res.status(400).json(new ApiError(400, result.array()));
     }
 
     const data = matchedData(req);
@@ -31,9 +47,18 @@ class AuthHandler {
     const newUser = new User(data);
     const savedUser = await newUser.save();
 
+    const accessToken = await this.tokenCreation(req, res, newUser);
+
+    let userRegister = {
+      username: savedUser.username,
+      accessToken: accessToken,
+      displayName: savedUser.displayName,
+      email: savedUser.email,
+    };
+
     res
       .status(201)
-      .json(new ApiSuccess(201, savedUser, "Registered successfully"));
+      .json(new ApiSuccess(201, userRegister, "Registered successfully"));
   });
 
   // @desc Logout user
@@ -82,21 +107,7 @@ class AuthHandler {
       res.status(401).json(new ApiError(401, "Incorrect username or password"));
     }
 
-    const accessToken = jwt.sign({ id: user.id }, config.jwt_secret, {
-      expiresIn: "8h",
-    });
-    const refreshToken = jwt.sign(
-      { id: user.id },
-      config.refresh_token_secret,
-      { expiresIn: "4d" }
-    );
-
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-    });
-
+    const accessToken = await this.tokenCreation(req, res, user);
     res
       .status(200)
       .json(
