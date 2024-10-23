@@ -17,8 +17,18 @@ export const createUserValidationSchema = {
   },
   displayName: {
     notEmpty: true,
+    errorMessage: "Invalid display name",
   },
   password: {
     notEmpty: true,
+    errorMessage: "Invalid password",
+  },
+  email: {
+    notEmpty: {
+      errorMessage: "Email address cannot be empty",
+    },
+    isEmail: {
+      errorMessage: "Invalid email address",
+    },
   },
 };

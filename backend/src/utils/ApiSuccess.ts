@@ -1,6 +1,6 @@
 export class ApiSuccess {
   status: number;
-  msg?: string;
+  msg: any;
   data: any;
 
   constructor(status: number, data: any, msg: string) {
