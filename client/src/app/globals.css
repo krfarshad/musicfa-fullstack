@@ -25,4 +25,7 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .custom-gradient {
+    background: linear-gradient(179deg, #2d2d2d 1.26%, #2d2d2d 151.48%);
+  }
 }
