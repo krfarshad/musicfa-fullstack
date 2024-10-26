@@ -11,15 +11,17 @@ export const AuthLayout = (props: PropsWithChildren) => {
     <Stack direction="row">
       <Stack
         position="relative"
-        height="100vh"
+        minHeight="100vh"
         direction="row"
         alignItems="center"
         justifyContent="center"
         flex="wrap"
         width={1}
         zIndex={10}
+        py={4}
+        sx={{ overflowY: "auto" }}
       >
-        <Box className="custom-gradient relative z-20 -mt-8 w-[380px] max-w-full rounded-2xl p-4 pb-10">
+        <Box className="custom-gradient relative z-20  w-[380px] max-w-full rounded-2xl p-4 pb-10">
           <Box className="pt-4 text-center">
             <Logo />
           </Box>
