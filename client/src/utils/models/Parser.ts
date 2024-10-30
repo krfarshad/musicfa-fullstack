@@ -1,5 +1,5 @@
 import qs from "@/lib/qs";
-import { Query } from "../type";
+import { Query } from "./type";
 
 export const initQuery = {
   filters: {},
