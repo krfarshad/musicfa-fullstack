@@ -1,4 +1,4 @@
-import { AuthTokenResponse } from "@/utils/models";
+import { AuthTokenResponse, AuthUserResponse } from "@/utils/models";
 import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
@@ -14,5 +14,5 @@ declare module "next-auth" {
     user: AuthUserResponse;
   }
 
-  interface Jwt extends SocialTokenResponse {}
+  interface Jwt extends AuthTokenResponse {}
 }

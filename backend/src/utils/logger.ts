@@ -35,7 +35,7 @@ if (isDev) {
   );
   logger.add(
     new winston.transports.File({
-      filename: "logs/error.log",
+      filename: "srs/utils/logs/error.log",
       level: "info",
     })
   );

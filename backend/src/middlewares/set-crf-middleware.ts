@@ -6,10 +6,11 @@ export const setCSRFTokenCookie = (
   res: Response,
   next: NextFunction
 ) => {
+
   if (!req.cookies["csrfToken"]) {
     const { csrf_secret, env } = config;
     res.cookie("csrfToken", csrf_secret.trim(), {
-      httpOnly: true,
+      httpOnly: env === "production" ? true : false,
       secure: env === "production",
     });
   } else {
