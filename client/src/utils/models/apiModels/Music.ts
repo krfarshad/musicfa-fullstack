@@ -1,13 +1,14 @@
 import { SongProp } from "@/features/music";
 import { Model } from "../Model";
 
-export type AlbumResponse = {
+export type MusicResponse = {
   id: number;
   title: string;
   coverImageUrl: string;
   description: string;
   likeCount: number;
   releaseDate: string;
+  name: string;
   artist: {
     name: string;
     avatarUrl: string;
@@ -16,16 +17,16 @@ export type AlbumResponse = {
   tracks?: SongProp[];
 };
 
-export class Album extends Model {
+export class Music extends Model {
   public resource(): string {
-    return "albums";
+    return "musics";
   }
 
-  public albums = () => {
-    return this.customUrl("albums");
+  public musics = () => {
+    return this.customUrl("musics");
   };
 
-  public album = (id: string) => {
-    return this.customUrl(`/albums/${id}`);
+  public music = (id: string) => {
+    return this.customUrl(`/musics/${id}`);
   };
 }

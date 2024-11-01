@@ -6,3 +6,4 @@ export * from "./apiModels/Auth";
 export * from "./apiModels/Album";
 export * from "./apiModels/Artist";
 export * from "./apiModels/Playlist";
+export * from "./apiModels/Music";

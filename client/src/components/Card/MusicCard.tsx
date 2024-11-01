@@ -1,17 +1,17 @@
 import { Box, Card, Link, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { SongProp } from "@/features/music";
 import LikeButton from "./LikeButton";
 import dynamic from "next/dynamic";
+import { MusicResponse } from "@/utils/models";
 
 const DynamicActions = dynamic(() => import("./SongActions"), { ssr: false });
 
 type Props = {
-  song: SongProp;
+  music: MusicResponse;
   index: number;
 };
 export const MusicCard = (props: Props) => {
-  const { song, index } = props;
+  const { music, index } = props;
 
   return (
     <Card
@@ -38,12 +38,12 @@ export const MusicCard = (props: Props) => {
         </Box>
 
         <Box position="relative" sx={{ width: "60px", height: "60px" }}>
-          <Link href={`/songs/${song.id}`}>
+          <Link href={`/musics/${music.id}`}>
             <Image
               width={70}
               height={70}
-              src={song.cover}
-              alt={song.name}
+              src={music.cover}
+              alt={music.name}
               objectFit="cover"
               priority={false}
               objectPosition="center"
@@ -60,11 +60,11 @@ export const MusicCard = (props: Props) => {
         >
           <Box p={1} flex={1}>
             <Link
-              href={`/songs/${song.id}`}
+              href={`/musics/${music.id}`}
               variant="body1"
               sx={{ textAlign: "center", color: "text.light" }}
             >
-              {song.name}
+              {music.name}
             </Link>
           </Box>
 
