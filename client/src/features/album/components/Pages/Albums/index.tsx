@@ -1,13 +1,13 @@
 "use client";
 import { AlbumCard, Section } from "@/components";
-import { albumList } from "@/features/album/api/albumList";
+import { getAlbums } from "@/features/album/api/getAlbums";
 import { Grid2, Box } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 
 export const Albums = () => {
   const { data, isLoading, isSuccess, isError, error } = useQuery({
     queryKey: ["albums"],
-    queryFn: albumList,
+    queryFn: getAlbums,
   });
 
   if (isLoading) {
