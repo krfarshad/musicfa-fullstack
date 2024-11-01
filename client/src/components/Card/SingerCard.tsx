@@ -1,9 +1,9 @@
 import { Box, Card, Link } from "@mui/material";
 import Image from "next/image";
-import { ArtistProp } from "@/features/artist";
+import { ArtistResponse } from "@/utils/models";
 
 interface Props {
-  artist: ArtistProp;
+  artist: ArtistResponse;
 }
 
 export const SingerCard = (props: Props) => {
@@ -15,7 +15,7 @@ export const SingerCard = (props: Props) => {
           <Image
             width={150}
             height={250}
-            src={artist.avatar}
+            src={artist.avatarUrl}
             alt={artist.username}
             objectFit="cover"
             priority={false}

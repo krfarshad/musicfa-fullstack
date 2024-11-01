@@ -5,35 +5,22 @@ import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
 class ArtistHandler {
   public getArtists = asyncHandler(async (req: Request, res: Response) => {
-    const { page = 1, limit = 12, search = "" } = req.query;
+    const { page = 1, perPage = 12, search = "" } = req.query;
 
     const query = search ? { name: { $regex: search, $options: "i" } } : {};
 
     const artists = await Artist.find(query)
-      .limit(Number(limit))
-      .skip((Number(page) - 1) * Number(limit));
+      .limit(Number(perPage))
+      .skip((Number(page) - 1) * Number(perPage));
 
     const total = await Artist.countDocuments(query);
 
-    if (artists.length === 0) {
-      res
-        .status(404)
-        .json(
-          new ApiError(404, "No artists found matching your search criteria.")
-        );
-    }
-
     res.json(
-      new ApiSuccess(
-        200,
-        {
-          total,
-          page: Number(page),
-          totalPages: Math.ceil(total / Number(limit)),
-          artists,
-        },
-        "success"
-      )
+      new ApiSuccess(200, artists, "success", {
+        total,
+        page: Number(page),
+        totalPages: Math.ceil(total / Number(perPage)),
+      })
     );
   });
 
