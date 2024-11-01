@@ -13,11 +13,7 @@ const playlistSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
+
   tracks: [
     {
       type: mongoose.Schema.Types.ObjectId,

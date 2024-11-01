@@ -20,6 +20,9 @@ const userSchema = new mongoose.Schema({
       message: (props: any) => `${props.value} is not a valid email!`,
     },
   },
+  avatarUrl: {
+    type: String,
+  },
   role: {
     type: mongoose.Schema.Types.String,
     enum: ["user", "admin"],

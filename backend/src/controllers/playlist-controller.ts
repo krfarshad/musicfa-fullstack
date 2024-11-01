@@ -6,23 +6,18 @@ import { Playlist } from "../database/models/playlist-model";
 
 class PlaylistHandler {
   public getPlaylists = asyncHandler(async (req: Request, res: Response) => {
-    const { page = 1, limit = 12, search = "" } = req.query;
+    const { page = 1, perPage = 12, search = "" } = req.query;
     const query = search ? { title: { $regex: search, $options: "i" } } : {};
     const playlists = await Playlist.find(query)
-      .limit(Number(limit))
-      .skip((Number(page) - 1) * Number(limit));
+      .limit(Number(perPage))
+      .skip((Number(page) - 1) * Number(perPage));
     const total = await Playlist.countDocuments(query);
     res.json(
-      new ApiSuccess(
-        200,
-        {
-          total,
-          page: Number(page),
-          totalPages: Math.ceil(total / Number(limit)),
-          playlists,
-        },
-        "Playlists retrieved successfully."
-      )
+      new ApiSuccess(200, playlists, "Playlists retrieved successfully.", {
+        total,
+        page: Number(page),
+        totalPages: Math.ceil(total / Number(perPage)),
+      })
     );
   });
 
