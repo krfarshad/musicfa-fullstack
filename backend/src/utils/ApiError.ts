@@ -1,13 +1,13 @@
 export class ApiError extends Error {
   status: number;
+  message: any;
   error: unknown;
   data: null;
-  msg: any;
 
-  constructor(status: number, msg: any) {
-    super(msg);
+  constructor(status: number, message: any) {
+    super(message);
     this.status = status;
-    this.msg = msg;
+    this.message = message;
     this.data = null;
   }
 }
