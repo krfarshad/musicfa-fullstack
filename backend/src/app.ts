@@ -16,6 +16,7 @@ import swaggerJSDoc from "swagger-jsdoc";
 import { swaggerOptions } from "./utils/swager-doc";
 import swaggerUi from "swagger-ui-express";
 import { setCSRFTokenCookie } from "./middlewares/set-crf-middleware";
+import path from "path";
 
 const session = require("express-session");
 
@@ -24,6 +25,8 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser("secret"));
+app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
 // app.use(setCSRFTokenCookie);
 
 app.use(
