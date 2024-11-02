@@ -46,9 +46,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(helmet());
-
 app.use("/api/v1/", routes);
 app.use(errorHandler);
+
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
