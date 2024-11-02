@@ -20,4 +20,8 @@ export class Artist extends Model {
   public artist = (id: string) => {
     return this.customUrl(`artists/${id}`);
   };
+
+  public add = () => {
+    return this.customUrl("artists/add");
+  };
 }
