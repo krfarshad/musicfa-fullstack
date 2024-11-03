@@ -1,7 +1,7 @@
 import passport from "passport";
-import { User } from "../database/models/user-model";
 import { config } from "../config/global.config";
 import { ExtractJwt, Strategy as JWTStrategy } from "passport-jwt";
+import { User } from "../models/user-model";
 
 const jwtConfig = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

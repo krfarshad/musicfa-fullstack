@@ -1,9 +1,9 @@
 import { Box, Card, Link } from "@mui/material";
 import Image from "next/image";
-import { PlaylistProp } from "@/features/playlist";
+import { PlaylistResponse } from "@/utils/models";
 
 interface Props {
-  playlist: PlaylistProp;
+  playlist: PlaylistResponse;
 }
 
 export const PlayListCard = (props: Props) => {
@@ -22,7 +22,7 @@ export const PlayListCard = (props: Props) => {
           <Image
             width={300}
             height={300}
-            src={playlist.cover}
+            src={playlist.coverImageUrl}
             alt={playlist.name}
             objectFit="cover"
             priority={false}

@@ -9,4 +9,5 @@ export const config = {
   csrf_secret: process.env.CSRF_SECRET ?? "",
   refresh_token_secret: process.env.REFRESH_TOKEN_SECRET ?? "",
   slack_url: process.env.SLACK_WEBHOOK_URL ?? "",
+  mongo_url: process.env.MONGO_URL ?? "mongodb://localhost:27017/musicfa",
 };

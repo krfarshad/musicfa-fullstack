@@ -1,9 +1,9 @@
 import { Avatar, Box, Card, Link, Stack } from "@mui/material";
 import Image from "next/image";
-import { AlbumProp } from "@/features/album";
+import { AlbumResponse } from "@/utils/models";
 
 interface Props {
-  album: AlbumProp;
+  album: AlbumResponse;
 }
 
 export const AlbumCard = (props: Props) => {
@@ -15,8 +15,8 @@ export const AlbumCard = (props: Props) => {
           <Image
             width={150}
             height={250}
-            src={album.cover}
-            alt={album.name}
+            src={album.coverImageUrl}
+            alt={album.title}
             objectFit="cover"
             priority={false}
             objectPosition="center"
@@ -25,11 +25,11 @@ export const AlbumCard = (props: Props) => {
         </Link>
       </Box>
       <Stack direction="row" width={1} alignItems="center" p={1}>
-        <Link href={`/singers/${album.singer.username}`}>
+        <Link href={`/singers/${album.artist.username}`}>
           <Avatar
             sx={{ width: 24, height: 24 }}
-            alt={album.singer.username}
-            src={album.singer.avatar}
+            alt={album.artist.username}
+            src={album.artist.avatarUrl}
           />
         </Link>
         <Link
@@ -37,7 +37,7 @@ export const AlbumCard = (props: Props) => {
           variant="body2"
           sx={{ textAlign: "center", color: "text.light", pl: 1 }}
         >
-          {album.name}
+          {album.title}
         </Link>
       </Stack>
     </Card>

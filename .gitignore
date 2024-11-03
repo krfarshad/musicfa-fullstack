@@ -2,4 +2,7 @@
 */.pnpm
 */.next
 **/.env
+**/.env.local
 **/*.log
+**/uploads
+**/dist
