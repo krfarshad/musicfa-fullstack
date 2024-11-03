@@ -1,13 +1,12 @@
-import { matchedData, validationResult } from "express-validator";
+import { matchedData } from "express-validator";
 import { comparePassword, hashPassword } from "../utils/passwordUtils";
-import { User } from "../database/models/user-model";
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
 import { config } from "../config/global.config";
 import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
-
+import { User } from "../models/user-model";
 class AuthHandler {
   private tokenCreation = async (req: Request, res: Response, user: any) => {
     const accessToken = jwt.sign({ id: user.id }, config.jwt_secret, {
@@ -29,11 +28,6 @@ class AuthHandler {
   // @route POST /api/v1/auth/user
   // @access public
   public register = asyncHandler(async (req: Request, res: Response) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-      res.status(400).json(new ApiError(400, result.array()));
-    }
-
     const data = matchedData(req);
     const findUser = await User.findOne({ username: data.username });
 

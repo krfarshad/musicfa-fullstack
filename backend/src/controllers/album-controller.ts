@@ -1,8 +1,8 @@
 import asyncHandler from "express-async-handler";
 import { Request, Response } from "express";
-import { Album } from "../database/models/album-model";
 import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
+import { Album } from "../models/album-model";
 class AlbumHandler {
   public getAlbums = asyncHandler(async (req: Request, res: Response) => {
     const { page = 1, perPage = 12, search = "" } = req.query;

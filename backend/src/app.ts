@@ -7,7 +7,6 @@ import MongoStore from "connect-mongo";
 import "./utils/passport";
 import "./database";
 import dotenv from "dotenv";
-import { errorHandler } from "./middlewares/errrorHandler";
 import logger from "./utils/logger";
 import { config } from "./config/global.config";
 import helmet from "helmet";
@@ -17,6 +16,7 @@ import { swaggerOptions } from "./utils/swager-doc";
 import swaggerUi from "swagger-ui-express";
 import { setCSRFTokenCookie } from "./middlewares/set-crf-middleware";
 import path from "path";
+import { errorHandler } from "./middlewares/errorHandler";
 
 const session = require("express-session");
 

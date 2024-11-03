@@ -1,8 +1,8 @@
 import asyncHandler from "express-async-handler";
 import { Request, Response } from "express";
-import { Artist } from "../database/models/artist-model";
 import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
+import { Artist } from "../models/artist-model";
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
 }
@@ -76,27 +76,19 @@ class ArtistHandler {
       throw new ApiError(409, "Username is already taken");
     }
 
-    try {
-      const newArtist = new Artist({
-        name,
-        username,
-        bio,
-        avatarUrl: req?.file?.path,
-      });
-      const result = await newArtist.save();
-
+    const newArtist = new Artist({
+      name,
+      username,
+      bio,
+      avatarUrl: req?.file?.path,
+    });
+    const result = await newArtist.save();
+    if (result) {
       res
         .status(201)
         .json(new ApiSuccess(201, newArtist, "Artist added successfully."));
-    } catch (error: any) {
-      if (error.name === "ValidationError") {
-        const messages = Object.values(error.errors).map(
-          (err: any) => err.message
-        );
-        throw new ApiError(400, messages.join(", "));
-      } else {
-        throw new ApiError(500, "An error occurred while adding the artist");
-      }
+    } else {
+      throw new ApiError(500, "Failed process request");
     }
   });
 }

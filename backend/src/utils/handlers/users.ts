@@ -1,7 +1,7 @@
 import { matchedData, validationResult } from "express-validator";
-import { mockData } from "../utils/mockData";
-import { hashPassword } from "../utils/passwordUtils";
-import { User } from "../database/models/user-model";
+import { mockData } from "../mockData";
+import { hashPassword } from "../passwordUtils";
+import { User } from "@/models/user-model";
 import { Request, Response } from "express";
 
 export const getUserByIdHandler = (req: Request, res: Response) => {

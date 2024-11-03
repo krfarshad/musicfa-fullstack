@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.String,
     require: true,
     unique: true,
+    trim: true,
+    lowercase: true,
   },
   displayName: mongoose.Schema.Types.String,
   password: {

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
-import { Playlist } from "../database/models/playlist-model";
+import { Playlist } from "../models/playlist-model";
 
 class PlaylistHandler {
   public getPlaylists = asyncHandler(async (req: Request, res: Response) => {

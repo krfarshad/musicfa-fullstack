@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Counter from "../../utils/counter";
+import Counter from "../utils/counter";
 
 const artistSchema = new mongoose.Schema({
   artistId: { type: Number, unique: true },
