@@ -45,7 +45,7 @@ export const AdminPage = () => {
           aria-label="lab API tabs example"
         >
           {tabs.map((tab) => (
-            <Tab label={tab.label} value={tab.value} />
+            <Tab key={`tab_${tab.value}`} label={tab.label} value={tab.value} />
           ))}
         </Tabs>
       </Box>

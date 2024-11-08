@@ -42,7 +42,7 @@ export const MusicCard = (props: Props) => {
             <Image
               width={70}
               height={70}
-              src={music.cover}
+              src={music.coverImageUrl}
               alt={music.name}
               objectFit="cover"
               priority={false}

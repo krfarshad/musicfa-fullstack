@@ -26,6 +26,7 @@ export const FUpload: React.FC<FieldProps & ClassNameOptionalProps & Props> = (
     removeCallback,
     removeLoading,
     defaultImages,
+    ...rest
   } = props;
   const formikContext = useFormikContext();
 
@@ -53,7 +54,7 @@ export const FUpload: React.FC<FieldProps & ClassNameOptionalProps & Props> = (
           htmlFor="images"
           className="border-light text-light flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-3xl border bg-slate-800 px-4  py-0 transition-all hover:opacity-80 hover:transition-all"
         >
-          <p className="text-light">Upload images</p>
+          <p className="text-light">{rest?.label ?? ""}</p>
         </label>
         <input
           name="images"
@@ -62,7 +63,7 @@ export const FUpload: React.FC<FieldProps & ClassNameOptionalProps & Props> = (
           multiple={multiple}
           className="absolute left-0 top-0 h-full w-full cursor-pointer opacity-0"
           onChange={handleChange}
-          accept="image/png, image/jpg, image/jpeg , image/webp"
+          // accept="image/png, image/jpg, image/jpeg , image/webp"
         />
       </div>
 

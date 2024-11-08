@@ -8,16 +8,14 @@ export type PostArtistProp = {
   name: string;
   username: string;
   bio: string;
-  avatarUrl: any;
-  type: "artist";
+  artistAvatar: any;
 };
 export const AddArtist = () => {
   const initValues: PostArtistProp = {
     name: "",
     username: "",
     bio: "",
-    type: "artist",
-    avatarUrl: null,
+    artistAvatar: null,
   };
 
   const { create } = useCreate({
@@ -48,7 +46,7 @@ export const AddArtist = () => {
         <Field component={FInput} label="Name" name="name" />
         <Field component={FInput} label="Username" name="username" />
         <Field component={FInput} label="Bio" name="bio" />
-        <Field component={FUpload} label="Avatar" name="avatarUrl" />
+        <Field component={FUpload} label="Avatar" name="artistAvatar" />
         <Field className="mt-4" component={FSubmit} label="submit" />
       </Form>
     </Formik>
