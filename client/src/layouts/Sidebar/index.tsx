@@ -8,6 +8,7 @@ import { LoginSidebar } from "./LoginSidebar";
 import List from "@mui/material/List";
 import { Box, Stack, Typography } from "@mui/material";
 import Link from "next/link";
+import { Fragment } from "react";
 
 export const Sidebar = () => {
   return (
@@ -25,7 +26,7 @@ export const Sidebar = () => {
       </Box>
       <Box sx={{ flex: "1 1 0%" }}>
         {menuItems.map((menu) => (
-          <>
+          <Fragment key={`menu-item_${menu.title}`}>
             <Typography
               variant="body1"
               component="h5"
@@ -66,7 +67,7 @@ export const Sidebar = () => {
               ))}
             </List>
             <Divider />
-          </>
+          </Fragment>
         ))}
       </Box>
       <LoginSidebar />
