@@ -55,16 +55,15 @@ class MusicHandler {
         .select("-_id -__v")
         .populate("artist", "avatarUrl username name -_id");
       if (!music) {
-        throw new ApiError(404, "Music not found");
+        res.json(new ApiError(404, "Music not found"));
+      } else {
+        const musicWithFullUrl = {
+          ...music.toObject(),
+          musicUrl: staticPath(req, "music", music.musicUrl),
+          coverImageUrl: staticPath(req, "cover", music.coverImageUrl),
+        };
+        res.json(new ApiSuccess(200, musicWithFullUrl, "success"));
       }
-
-      const musicWithFullUrl = {
-        ...music.toObject(),
-        musicUrl: staticPath(req, "music", music.musicUrl),
-        coverImageUrl: staticPath(req, "cover", music.coverImageUrl),
-      };
-
-      res.json(new ApiSuccess(200, musicWithFullUrl, "success"));
     } catch (error) {
       res.json(new ApiError(200, "Failed to retrieve music"));
     }

@@ -41,17 +41,17 @@ class ArtistHandler {
     try {
       const artist = await Artist.findOne({ username }).select("-_id -__v");
       if (!artist) {
-        throw new ApiError(404, "Music not found");
+        res.json(new ApiError(404, "Music not found"));
+      } else {
+        const musicWithFullUrl = {
+          ...artist.toObject(),
+          avatarUrl: staticPath(req, "artistAvatar", artist.avatarUrl),
+        };
+
+        res.json(new ApiSuccess(200, musicWithFullUrl, "success"));
       }
-
-      const musicWithFullUrl = {
-        ...artist.toObject(),
-        avatarUrl: staticPath(req, "artistAvatar", artist.avatarUrl),
-      };
-
-      res.json(new ApiSuccess(200, musicWithFullUrl, "success"));
     } catch (error) {
-      res.json(new ApiError(200, "Failed to retrieve music"));
+      res.json(new ApiError(500, "Failed to retrieve music"));
     }
   });
 
