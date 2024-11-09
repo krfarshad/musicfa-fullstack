@@ -16,7 +16,38 @@ interface CustomRequest extends Request {
 }
 
 class MusicHandler {
-  public getMusics = asyncHandler(async (req: Request, res: Response) => {});
+  public getMusics = asyncHandler(async (req: Request, res: Response) => {
+    const { page = 1, perPage = 12, search = "" } = req.query;
+    const query = search ? { name: { $regex: search, $options: "i" } } : {};
+
+    try {
+      const musics = await Music.find(query)
+        .select("-_id -__v")
+        .limit(Number(perPage))
+        .skip((Number(page) - 1) * Number(perPage));
+
+      const total = await Music.countDocuments(query);
+
+      const baseUrl = req.protocol + "://" + req.get("host") + "/uploads/";
+
+      const musicsWithFullUrls = musics.map((music) => ({
+        ...music.toObject(),
+        musicUrl: baseUrl + "musics/" + music.musicUrl,
+        coverImageUrl: baseUrl + "covers/" + music.coverImageUrl,
+      }));
+
+      res.json(
+        new ApiSuccess(200, musicsWithFullUrls, "success", {
+          total,
+          page: Number(page),
+          totalPages: Math.ceil(total / Number(perPage)),
+        })
+      );
+    } catch (e) {
+      throw new ApiError(500, "Failed process request");
+    }
+  });
+
   public getMusic = asyncHandler(async (req: Request, res: Response) => {});
   public removeMusic = asyncHandler(async (req: Request, res: Response) => {});
   public updateMusic = asyncHandler(async (req: Request, res: Response) => {});

@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export const Browse = () => {
   const { data, isLoading, isSuccess, isError, error } = useQuery({
-    queryKey: ["albums"],
+    queryKey: ["musics"],
     queryFn: getMusics,
   });
 
@@ -25,7 +25,7 @@ export const Browse = () => {
           {data.data.length ? (
             <Section title="Browse Musics" variant="h1">
               <Grid2 container spacing={1}>
-                {data.data.slice(1).map((music, index) => (
+                {data.data.map((music, index) => (
                   <Grid2 size={{ xs: 12, md: 6 }} key={`music_${music.id}`}>
                     <MusicCard music={music} index={index + 1} />
                   </Grid2>
