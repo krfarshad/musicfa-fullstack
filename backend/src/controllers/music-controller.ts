@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
 import { Music } from "../models/music-model";
-import { getDuration } from "../utils/getDuration";
 import { Artist } from "../models/artist-model";
 import fs from "fs";
 

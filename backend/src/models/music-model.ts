@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 import Counter from "../utils/counter";
 
 const musicSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+  },
   title: {
     type: String,
     required: [true, "Music title is require"],
