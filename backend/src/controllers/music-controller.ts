@@ -5,6 +5,7 @@ import { ApiError } from "../utils/ApiError";
 import { Music } from "../models/music-model";
 import { Artist } from "../models/artist-model";
 import fs from "fs";
+import { staticPath } from "../utils/staticPath";
 
 interface CustomRequest extends Request {
   files: {
@@ -28,12 +29,10 @@ class MusicHandler {
 
       const total = await Music.countDocuments(query);
 
-      const baseUrl = req.protocol + "://" + req.get("host") + "/uploads/";
-
       const musicsWithFullUrls = musics.map((music) => ({
         ...music.toObject(),
-        musicUrl: baseUrl + "musics/" + music.musicUrl,
-        coverImageUrl: baseUrl + "covers/" + music.coverImageUrl,
+        musicUrl: staticPath(req, "music", music.musicUrl),
+        coverImageUrl: staticPath(req, "cover", music.coverImageUrl),
       }));
 
       res.json(
@@ -48,7 +47,28 @@ class MusicHandler {
     }
   });
 
-  public getMusic = asyncHandler(async (req: Request, res: Response) => {});
+  public getMusic = asyncHandler(async (req: Request, res: Response) => {
+    const { musicId: id } = req.params;
+
+    try {
+      const music = await Music.findOne({ id })
+        .select("-_id -__v")
+        .populate("artist", "avatarUrl username name -_id");
+      if (!music) {
+        throw new ApiError(404, "Music not found");
+      }
+
+      const musicWithFullUrl = {
+        ...music.toObject(),
+        musicUrl: staticPath(req, "music", music.musicUrl),
+        coverImageUrl: staticPath(req, "cover", music.coverImageUrl),
+      };
+
+      res.json(new ApiSuccess(200, musicWithFullUrl, "success"));
+    } catch (error) {
+      res.json(new ApiError(200, "Failed to retrieve music"));
+    }
+  });
   public removeMusic = asyncHandler(async (req: Request, res: Response) => {});
   public updateMusic = asyncHandler(async (req: Request, res: Response) => {});
   public addMusic = asyncHandler(async (req: Request, res: Response) => {

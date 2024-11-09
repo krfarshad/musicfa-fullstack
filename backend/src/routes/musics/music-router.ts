@@ -8,7 +8,7 @@ const router: Router = Router();
 
 router.get("/musics", MusicController.getMusics);
 
-router.get("/musics/:musicId", MusicController.getMusics);
+router.get("/musics/:musicId", MusicController.getMusic);
 
 router.post(
   "/musics",
