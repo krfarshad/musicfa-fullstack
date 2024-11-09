@@ -11,7 +11,7 @@ export const SingerCard = (props: Props) => {
   return (
     <Card variant="elevation" sx={{ width: 140, background: "transparent" }}>
       <Box sx={{ borderRadius: "8px", width: 140, height: "140px" }}>
-        <Link href={`/singers/${artist.username}`}>
+        <Link href={`/artists/${artist.username}`}>
           <Image
             width={150}
             height={250}

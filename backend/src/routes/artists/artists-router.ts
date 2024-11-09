@@ -18,7 +18,7 @@ router.post(
   ArtistController.addArtist
 );
 
-router.get("/artists/:artistId", ArtistController.getArtists);
+router.get("/artists/:username", ArtistController.getArtist);
 
 router.put(
   "/artists",

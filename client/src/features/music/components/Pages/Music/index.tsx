@@ -29,12 +29,10 @@ export const Music = (props: Props) => {
     <>
       {isSuccess && (
         <>
-          {data.data ? (
+          {data.data && (
             <Section title={data.data.title} variant="h1">
               {data.data.title}
             </Section>
-          ) : (
-            <p>Currently there is no data to display!</p>
           )}
         </>
       )}
