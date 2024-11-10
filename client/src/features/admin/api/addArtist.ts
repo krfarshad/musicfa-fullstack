@@ -11,7 +11,7 @@ export const addArtist = async (props: Props): Promise<ApiResponse<any>> => {
   const { values } = props;
   const editValues = {
     ...values,
-    avatarUrl: values?.avatarUrl && (values?.avatarUrl[0] as File),
+    artistAvatar: values?.artistAvatar && (values?.artistAvatar[0] as File),
   };
   const parseValues: FormData = convertToFormData<PostArtistProp>(editValues);
   const model = new Artist();

@@ -16,7 +16,6 @@ const MUIProvider = (props: Props) => {
       // typography,
       shape: { borderRadius: 8 },
       spacing: 8,
-      direction: "rtl",
     }),
     [],
   );

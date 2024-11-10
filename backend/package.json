@@ -24,7 +24,8 @@
   "license": "MIT",
   "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1",
   "dependencies": {
-    "@types/bcrypt": "^5.0.2",
+    "@types/sharp": "^0.32.0",
+    "@types/uuid": "^10.0.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
@@ -46,12 +47,14 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "sharp": "^0.33.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.15.0",
     "winston-slack-webhook-transport": "^2.3.5"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/connect-mongo": "^3.1.6",
     "@types/cookie-parser": "^1.4.7",

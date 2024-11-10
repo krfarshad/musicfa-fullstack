@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { ApiSuccess } from "../utils/ApiSuccess";
 import { ApiError } from "../utils/ApiError";
 import { Artist } from "../models/artist-model";
+import { staticPath } from "../utils/staticPath";
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
 }
@@ -20,11 +21,9 @@ class ArtistHandler {
 
     const total = await Artist.countDocuments(query);
 
-    const baseUrl = req.protocol + "://" + req.get("host") + "/";
-
     const artistsWithFullUrls = artists.map((artist) => ({
       ...artist.toObject(),
-      avatarUrl: baseUrl + artist.avatarUrl,
+      avatarUrl: staticPath(req, "artistAvatar", artist.avatarUrl),
     }));
 
     res.json(
@@ -37,15 +36,23 @@ class ArtistHandler {
   });
 
   public getArtist = asyncHandler(async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { username } = req.params;
 
-    const artist = await Artist.findById(id);
+    try {
+      const artist = await Artist.findOne({ username }).select("-_id -__v");
+      if (!artist) {
+        res.json(new ApiError(404, "Music not found"));
+      } else {
+        const musicWithFullUrl = {
+          ...artist.toObject(),
+          avatarUrl: staticPath(req, "artistAvatar", artist.avatarUrl),
+        };
 
-    if (!artist) {
-      res.status(404).json(new ApiError(404, "Artist not found."));
+        res.json(new ApiSuccess(200, musicWithFullUrl, "success"));
+      }
+    } catch (error) {
+      res.json(new ApiError(500, "Failed to retrieve music"));
     }
-
-    res.json(new ApiSuccess(200, artist, "Artist retrieved successfully."));
   });
 
   public updateArtist = asyncHandler(async (req: Request, res: Response) => {

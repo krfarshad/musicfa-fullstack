@@ -13,12 +13,12 @@ router.get("/artists", ArtistController.getArtists);
 
 router.post(
   "/artists",
-  checkSchema(artistSchemaValidator),
-  [upload.single("avatarUrl"), checkSchemaValidator],
+  // checkSchema(artistSchemaValidator),
+  [upload.single("artistAvatar")],
   ArtistController.addArtist
 );
 
-router.get("/artists/:artistId", ArtistController.getArtists);
+router.get("/artists/:username", ArtistController.getArtist);
 
 router.put(
   "/artists",

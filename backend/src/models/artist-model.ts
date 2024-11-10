@@ -1,7 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { Date } from "mongoose";
 import Counter from "../utils/counter";
 
-const artistSchema = new mongoose.Schema({
+export interface IArtist extends Document {
+  artistId: number;
+  avatarUrl: string;
+  username: string;
+  name: string;
+  bio?: string;
+  createdAt: Date;
+}
+
+const artistSchema = new mongoose.Schema<IArtist>({
   artistId: { type: Number, unique: true },
   name: {
     type: String,

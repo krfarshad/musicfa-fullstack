@@ -2,13 +2,13 @@ import { ApiResponse } from "@/types";
 import { Artist, ArtistResponse } from "@/utils/models";
 
 type Props = {
-  id: string;
+  username: string;
 };
 export const getArtist = async (
   props: Props,
 ): Promise<ApiResponse<ArtistResponse>> => {
-  const { id } = props;
+  const { username } = props;
   const model = new Artist();
-  const res = await model.artist(id).get();
+  const res = await model.artist(username).get();
   return res.json();
 };

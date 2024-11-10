@@ -4,17 +4,17 @@ import { Model } from "../Model";
 export type MusicResponse = {
   id: number;
   title: string;
+  musicUrl: string;
+  playCount: number;
   coverImageUrl: string;
   description: string;
   likeCount: number;
   releaseDate: string;
-  name: string;
   artist: {
     name: string;
     avatarUrl: string;
     username: string;
   };
-  tracks?: SongProp[];
 };
 
 export class Music extends Model {
@@ -28,5 +28,13 @@ export class Music extends Model {
 
   public music = (id: string) => {
     return this.customUrl(`/musics/${id}`);
+  };
+
+  public like = (id: string) => {
+    return this.customUrl(`/musics/${id}/like`);
+  };
+
+  public play = (id: string) => {
+    return this.customUrl(`/musics/${id}/play`);
   };
 }
