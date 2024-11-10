@@ -10,6 +10,7 @@ router.get("/musics", MusicController.getMusics);
 
 router.get("/musics/:musicId", MusicController.getMusic);
 
+router.put("/musics/:id/play", MusicController.playMusic);
 router.post(
   "/musics",
   upload.fields([
