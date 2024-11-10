@@ -7,12 +7,21 @@ export const staticPath = (
 ) => {
   const baseUrl = req.protocol + "://" + req.get("host") + "/uploads/";
 
+  let url = baseUrl;
   switch (type) {
     case "music":
-      return baseUrl + "musics/" + fileName;
+      url += "musics/" + fileName;
+      break;
+
     case "cover":
-      return baseUrl + "covers/" + fileName;
+      url += "covers/" + fileName;
+      break;
+
     case "artistAvatar":
-      return baseUrl + "artists/" + fileName;
+      url += "artists/" + fileName;
+      break;
+    default:
+      throw new Error("File doesn't exist!");
   }
+  return new URL(url);
 };
