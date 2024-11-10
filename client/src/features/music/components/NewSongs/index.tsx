@@ -1,6 +1,5 @@
 "use client";
 import { Section, MusicCard } from "@/components";
-import { latestSong } from "../../utils/data";
 import { Grid2 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { getMusics } from "../../api/getMusics";
@@ -26,7 +25,7 @@ export const NewSongs = () => {
                 {data.data.map((music, index) => (
                   <Grid2 size={{ xs: 12, md: 6 }} key={`music_${music.id}`}>
                     <MusicCard
-                      key={`music_${music.name}`}
+                      key={`music_${music.title}`}
                       music={music}
                       index={index + 1}
                     />
