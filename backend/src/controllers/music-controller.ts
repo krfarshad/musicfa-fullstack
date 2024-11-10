@@ -24,15 +24,21 @@ class MusicHandler {
     try {
       const musics = await Music.find(query)
         .select("-_id -__v")
+        .populate("artist", "avatarUrl username name -_id")
         .limit(Number(perPage))
-        .skip((Number(page) - 1) * Number(perPage));
+        .skip((Number(page) - 1) * Number(perPage))
+        .lean();
 
       const total = await Music.countDocuments(query);
 
       const musicsWithFullUrls = musics.map((music) => ({
-        ...music.toObject(),
+        ...music,
         musicUrl: staticPath(req, "music", music.musicUrl),
         coverImageUrl: staticPath(req, "cover", music.coverImageUrl),
+        artist: {
+          ...music.artist,
+          avatarUrl: staticPath(req, "artistAvatar", music.artist.avatarUrl),
+        },
       }));
 
       res.json(
@@ -53,14 +59,20 @@ class MusicHandler {
     try {
       const music = await Music.findOne({ id })
         .select("-_id -__v")
-        .populate("artist", "avatarUrl username name -_id");
+        .populate("artist", "avatarUrl username name -_id")
+        .lean();
+
       if (!music) {
         res.json(new ApiError(404, "Music not found"));
       } else {
         const musicWithFullUrl = {
-          ...music.toObject(),
+          ...music,
           musicUrl: staticPath(req, "music", music.musicUrl),
           coverImageUrl: staticPath(req, "cover", music.coverImageUrl),
+          artist: {
+            ...music.artist,
+            avatarUrl: staticPath(req, "artistAvatar", music.artist.avatarUrl),
+          },
         };
         res.json(new ApiSuccess(200, musicWithFullUrl, "success"));
       }
@@ -68,6 +80,30 @@ class MusicHandler {
       res.json(new ApiError(200, "Failed to retrieve music"));
     }
   });
+
+  public playMusic = asyncHandler(async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+      const music = await await Music.findOne({ id });
+      if (!music) {
+        res.json(new ApiError(404, "Music not found"));
+      } else {
+        music.playCount += 1;
+        const result = await music.save();
+        res.json(
+          new ApiSuccess(
+            201,
+            { playCount: result.playCount },
+            "Played increases"
+          )
+        );
+      }
+    } catch (error) {
+      res.json(new ApiError(500, "Error playing music"));
+    }
+  });
+
   public removeMusic = asyncHandler(async (req: Request, res: Response) => {});
   public updateMusic = asyncHandler(async (req: Request, res: Response) => {});
   public addMusic = asyncHandler(async (req: Request, res: Response) => {
