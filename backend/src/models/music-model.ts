@@ -1,7 +1,20 @@
 import mongoose from "mongoose";
 import Counter from "../utils/counter";
+import { IArtist } from "./artist-model";
 
-const musicSchema = new mongoose.Schema({
+interface IMusic extends Document {
+  id: number;
+  title: string;
+  artist: IArtist;
+  album?: mongoose.Schema.Types.ObjectId;
+  musicUrl: string;
+  coverImageUrl: string;
+  playCount: number;
+  likeCount: number;
+  createdAt: Date;
+}
+
+const musicSchema = new mongoose.Schema<IMusic>({
   id: {
     type: Number,
   },
@@ -12,7 +25,7 @@ const musicSchema = new mongoose.Schema({
   artist: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Artist",
-    required: [true, "Music artist is require"],
+    required: [true, "Music artist is required"],
   },
   album: {
     type: mongoose.Schema.Types.ObjectId,
