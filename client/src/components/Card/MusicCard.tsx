@@ -3,16 +3,16 @@ import Image from "next/image";
 import LikeButton from "./LikeButton";
 import dynamic from "next/dynamic";
 import { MusicResponse } from "@/utils/models";
+import { PlaySongButton } from "./PlaySongButton";
 
 const DynamicActions = dynamic(() => import("./SongActions"), { ssr: false });
 
 type Props = {
   music: MusicResponse;
-  index: number;
+  index?: number;
 };
 export const MusicCard = (props: Props) => {
   const { music, index } = props;
-
   return (
     <Card
       sx={{
@@ -27,30 +27,41 @@ export const MusicCard = (props: Props) => {
         alignItems={"center"}
         sx={{ width: "100%" }}
       >
-        <Box pl={2}>
-          <Typography
-            variant="body1"
-            component="h1"
-            sx={{ fontWeight: "bold" }}
-          >
-            #{index}
-          </Typography>
-        </Box>
-
+        {index && (
+          <Box pl={2}>
+            <Typography
+              variant="body1"
+              component="h1"
+              sx={{ fontWeight: "bold" }}
+            >
+              #{index}
+            </Typography>
+          </Box>
+        )}
         <Box position="relative" sx={{ width: "60px", height: "60px" }}>
-          <Link href={`/musics/${music.id}`}>
-            <Image
-              width={70}
-              height={70}
-              src={music.coverImageUrl}
-              alt={music.name}
-              objectFit="cover"
-              priority={false}
-              objectPosition="center"
-              className="h-full w-full object-cover object-center"
-            />
-          </Link>
-          {/* <PlaySongButton status="play" /> */}
+          <Image
+            width={70}
+            height={70}
+            src={music.coverImageUrl}
+            alt={music.title}
+            objectFit="cover"
+            priority={false}
+            objectPosition="center"
+            className="h-full w-full object-cover object-center"
+          />
+          <Box
+            position="absolute"
+            sx={{ background: "#0005" }}
+            width={1}
+            height={1}
+            left={0}
+            top={0}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <PlaySongButton music={music} />
+          </Box>
         </Box>
         <Stack
           direction="row"
@@ -64,8 +75,15 @@ export const MusicCard = (props: Props) => {
               variant="body1"
               sx={{ textAlign: "center", color: "text.light" }}
             >
-              {music.name}
+              {music.title}
             </Link>
+            <Box>
+              <Link href={`/artists/${music.artist.username}`}>
+                <Typography sx={{ color: "text.light" }} variant="body1">
+                  {music.artist.name}
+                </Typography>
+              </Link>
+            </Box>
           </Box>
 
           <Stack direction="row" justifyContent="between">
