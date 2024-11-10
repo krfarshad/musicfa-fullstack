@@ -41,7 +41,7 @@ export default function MUIAppLayout(props: Props) {
     setOpen(newState);
     localStorage.setItem("sidebarOpen", JSON.stringify(newState));
   };
-  const drawerWidth = open ? 240 : 0;
+  const drawerWidth: number = open ? 240 : 0;
 
   return (
     <>
@@ -91,6 +91,7 @@ export default function MUIAppLayout(props: Props) {
               <Sidebar />
             </Drawer>
             <Box
+              position="relative"
               component="main"
               sx={{
                 flexGrow: 1,
@@ -102,7 +103,7 @@ export default function MUIAppLayout(props: Props) {
             >
               <Toolbar />
               {children}
-              <PLayerBlade />
+              <PLayerBlade drawerWidth={drawerWidth} />
             </Box>
           </>
         )}
